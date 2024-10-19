@@ -1,42 +1,48 @@
-#EcommerceFullStackApp
-Welcome to the EcommerceFullStackApp repository! 
-This project showcases a full-stack e-commerce solution built using .NET Core Web APIs for the backend and Angular for the frontend. 
-The backend is designed as a collection of microservices, ensuring scalability, flexibility, and ease of development.
+# **EcommerceFullStackApp**
 
-Project Overview
-Backend (Microservices)
+Welcome to the **EcommerceFullStackApp** repository!  
+This project showcases a full-stack e-commerce solution built using **.NET Core Web APIs** for the backend and **Angular** for the frontend. The backend is designed as a collection of microservices, ensuring scalability, flexibility, and ease of development.
+
+## **Project Overview**
+
+### **Backend (Microservices)**
+
 The backend is composed of the following independent microservices:
 
-CustomerDataApi
-Handles customer data management, including customer profiles, orders, and interactions.
+1. **CustomerDataApi**  
+   Handles customer data management, including customer profiles, orders, and interactions.
 
-ProductsDataApiService
-Manages the e-commerce catalog, including product listings, details, pricing, and availability.
+2. **ProductsDataApiService**  
+   Manages the e-commerce catalog, including product listings, details, pricing, and availability.
 
-SaleOrderDataService
-Manages order creation, order details, and customer purchase history.
+3. **SaleOrderDataService**  
+   Manages order creation, order details, and customer purchase history.
 
-SaleOrderProcessingAPI
-Responsible for order processing and workflow. It communicates asynchronously with the Sales Invoice Generator using RabbitMQ.
+4. **SaleOrderProcessingAPI**  
+   Responsible for order processing and workflow. It communicates asynchronously with the Sales Invoice Generator using **RabbitMQ**.
 
-SalesInvoiceGeneratorAPIService
-Generates invoices for completed sales orders and sends them to customers via email.
+5. **SalesInvoiceGeneratorAPIService**  
+   Generates invoices for completed sales orders and sends them to customers via email.
 
-Shared Code Library
-SalesAPILibrary
-Contains common code and utilities that are shared across the backend microservices, ensuring modularity and maintainability.
-Microservices Communication
-The SaleOrderProcessingAPI and SalesInvoiceGeneratorAPIService microservices communicate via RabbitMQ, an asynchronous messaging system. This setup helps ensure efficient and decoupled communication between these critical services.
+### **Shared Code Library**
 
-Frontend (Angular Application)
-The frontend is developed with Angular, providing a smooth and responsive user interface for customers to browse products, place orders, and view order history. It interacts with the backend services to manage all e-commerce operations.
+- **SalesAPILibrary**  
+  Contains common code and utilities that are shared across the backend microservices, ensuring modularity and maintainability.
 
-Setup and Installation
-Follow these steps to set up the project locally:
+## **Microservices Communication**
 
-Clone the Repository
+The **SaleOrderProcessingAPI** and **SalesInvoiceGeneratorAPIService** microservices communicate via **RabbitMQ**, an asynchronous messaging system. This setup helps ensure efficient and decoupled communication between these critical services.
+
+## **Frontend (Angular Application)**
+
+The frontend is developed with **Angular**, providing a smooth and responsive user interface for customers to browse products, place orders, and view order history. It interacts with the backend services to manage all e-commerce operations.
+
+## **Setup and Installation**
+
+### **Clone the Repository**
 git clone <your-github-repo-url>
 cd EcommerceFullStackApp
+
 
 Backend Setup
 Navigate to the Backend directory
