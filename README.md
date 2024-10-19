@@ -56,9 +56,10 @@ cd Backend
 For each of the microservices, run the following commands:
 
 cd <MicroserviceName>  # Example: cd CustomerDataApi
+
 dotnet restore
 
-###**Set up RabbitMQ**
+### **Set up RabbitMQ**
 
 Run RabbitMQ in a Docker container to enable inter-service communication:
 
@@ -89,6 +90,7 @@ SalesInvoiceGeneratorAPIService
 Open separate terminal windows for each microservice and run:
 
 cd <MicroserviceName>  # Example: cd CustomerDataApi
+
 dotnet run
 
 Repeat for each service:
