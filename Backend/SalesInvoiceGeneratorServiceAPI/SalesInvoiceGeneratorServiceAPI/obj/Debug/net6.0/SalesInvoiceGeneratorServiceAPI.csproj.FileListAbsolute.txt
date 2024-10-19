@@ -186,3 +186,4 @@ C:\Users\mohan\source\repos\EcommerceFullStackApp\Backend\SalesInvoiceGeneratorS
 C:\Users\mohan\source\repos\EcommerceFullStackApp\Backend\SalesInvoiceGeneratorServiceAPI\SalesInvoiceGeneratorServiceAPI\obj\Debug\net6.0\SalesInvoiceGeneratorServiceAPI.pdb
 C:\Users\mohan\source\repos\EcommerceFullStackApp\Backend\SalesInvoiceGeneratorServiceAPI\SalesInvoiceGeneratorServiceAPI\obj\Debug\net6.0\SalesInvoiceGeneratorServiceAPI.genruntimeconfig.cache
 C:\Users\mohan\source\repos\EcommerceFullStackApp\Backend\SalesInvoiceGeneratorServiceAPI\SalesInvoiceGeneratorServiceAPI\obj\Debug\net6.0\ref\SalesInvoiceGeneratorServiceAPI.dll
+C:\Users\mohan\source\repos\EcommerceFullStackApp\Backend\SalesInvoiceGeneratorServiceAPI\SalesInvoiceGeneratorServiceAPI\obj\Debug\net6.0\SalesInvoiceGeneratorServiceAPI.sourcelink.json

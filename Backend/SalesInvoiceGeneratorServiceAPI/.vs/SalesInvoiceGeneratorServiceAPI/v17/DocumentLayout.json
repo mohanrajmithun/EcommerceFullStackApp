@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\services\\invoicepdfgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\services\\invoicepdfgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\interfaces\\iinvoicepdfgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\interfaces\\iinvoicepdfgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\serviceclients\\saleorderdataserviceclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\serviceclients\\saleorderdataserviceclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,16 +31,8 @@
       "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\controllers\\saleorderconsumercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\services\\invoicepdfgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\services\\invoicepdfgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\interfaces\\isaleorderdataserviceclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\interfaces\\isaleorderdataserviceclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\interfaces\\iinvoicepdfgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\interfaces\\iinvoicepdfgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\interfaces\\isaleorderconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -57,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\serviceclients\\customerdataserviceclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\serviceclients\\customerdataserviceclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\salesinvoicegeneratorserviceapi\\salesinvoicegeneratorserviceapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{55E27BF0-734C-4BB6-BFAC-CCACCCAE155C}|SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI.csproj|solutionrelative:salesinvoicegeneratorserviceapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 342,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,43 +82,72 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\appsettings.json",
+              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\appsettings.json",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAACoAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-19T20:37:41.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "IInvoicePdfGeneratorService.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Interfaces\\IInvoicePdfGeneratorService.cs",
+              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\Interfaces\\IInvoicePdfGeneratorService.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Interfaces\\IInvoicePdfGeneratorService.cs",
+              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\Interfaces\\IInvoicePdfGeneratorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T05:24:40.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SaleOrderDataServiceClient.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
+              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
+              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T05:50:34.408Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "InvoicePdfGeneratorService.cs",
               "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\services\\InvoicePdfGeneratorService.cs",
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\services\\InvoicePdfGeneratorService.cs",
               "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\services\\InvoicePdfGeneratorService.cs",
               "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\services\\InvoicePdfGeneratorService.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAASwFsAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T05:25:15.822Z"
+              "WhenOpened": "2024-08-08T05:25:15.822Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "SaleOrderConsumerController.cs",
-              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Controllers\\SaleOrderConsumerController.cs",
-              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\Controllers\\SaleOrderConsumerController.cs",
-              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Controllers\\SaleOrderConsumerController.cs",
-              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\Controllers\\SaleOrderConsumerController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA2wB0AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T05:45:16.507Z"
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
+              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAACsAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-08-08T05:21:54.24Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Program.cs",
-              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\Program.cs",
-              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Program.cs",
-              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\Program.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAhwBcAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T05:21:07.442Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "SaleOrderConsumer.cs",
               "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\services\\SaleOrderConsumer.cs",
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\services\\SaleOrderConsumer.cs",
@@ -126,32 +159,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IInvoicePdfGeneratorService.cs",
-              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Interfaces\\IInvoicePdfGeneratorService.cs",
-              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\Interfaces\\IInvoicePdfGeneratorService.cs",
-              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Interfaces\\IInvoicePdfGeneratorService.cs",
-              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\Interfaces\\IInvoicePdfGeneratorService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Program.cs",
+              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Program.cs",
+              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\Program.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAhwBcAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T05:24:40.317Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SaleOrderDataServiceClient.cs",
-              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
-              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
-              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
-              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACgAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T05:50:34.408Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-08T05:21:07.442Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "SaleOrderConsumerController.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Controllers\\SaleOrderConsumerController.cs",
+              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\Controllers\\SaleOrderConsumerController.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Controllers\\SaleOrderConsumerController.cs",
+              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\Controllers\\SaleOrderConsumerController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAA2wB0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-08T05:45:16.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "ISaleOrderConsumer.cs",
               "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Interfaces\\ISaleOrderConsumer.cs",
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\Interfaces\\ISaleOrderConsumer.cs",
@@ -163,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "ISaleOrderDataServiceClient.cs",
               "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Interfaces\\ISaleOrderDataServiceClient.cs",
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\Interfaces\\ISaleOrderDataServiceClient.cs",
@@ -175,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Invoice.cs",
               "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Entities\\Invoice.cs",
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\Entities\\Invoice.cs",
@@ -187,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\Infrastructure\\AppDbContext.cs",
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\Infrastructure\\AppDbContext.cs",
@@ -199,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "CustomerDataAPIService.cs",
               "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\services\\CustomerDataAPIService.cs",
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\services\\CustomerDataAPIService.cs",
@@ -211,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "ProductDataAPIService.cs",
               "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\services\\ProductDataAPIService.cs",
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\services\\ProductDataAPIService.cs",
@@ -223,7 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "ProductDataServiceClient.cs",
               "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\ServiceClients\\ProductDataServiceClient.cs",
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\ServiceClients\\ProductDataServiceClient.cs",
@@ -235,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "CustomerDataServiceClient.cs",
               "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\ServiceClients\\CustomerDataServiceClient.cs",
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\ServiceClients\\CustomerDataServiceClient.cs",
@@ -244,18 +276,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-08T05:40:30.639Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
-              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
-              "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-08-08T05:21:54.24Z"
             }
           ]
         },

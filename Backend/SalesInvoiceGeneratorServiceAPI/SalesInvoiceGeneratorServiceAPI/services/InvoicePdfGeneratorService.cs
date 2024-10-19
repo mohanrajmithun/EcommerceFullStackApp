@@ -15,13 +15,14 @@ namespace SalesInvoiceGeneratorServiceAPI.services
     public class InvoicePdfGeneratorService : IInvoicePdfGeneratorService
     {
         private readonly ILogger<InvoicePdfGeneratorService> logger;
+        private readonly IConfiguration configuration; // Add this line
 
-        public InvoicePdfGeneratorService(ILogger<InvoicePdfGeneratorService> logger)
+        public InvoicePdfGeneratorService(ILogger<InvoicePdfGeneratorService> logger, IConfiguration configuration)
         {
             this.logger = logger;
+            this.configuration = configuration; // Initialize the configuration
         }
 
-        // Add the async modifier since we're using async methods
         public async Task GenerateInvoicePdf(Invoice invoice)
         {
             // Ensure the "Invoices" directory exists
@@ -87,10 +88,9 @@ namespace SalesInvoiceGeneratorServiceAPI.services
             await SendInvoiceEmail(invoice, filePath);
         }
 
-        // Since this is an async method, it requires a body and Task as a return type.
         private async Task SendInvoiceEmail(Invoice invoice, string filePath)
         {
-            var apiKey = "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";
+            var apiKey = configuration["SendGrid:ApiKey"]; // Read API key from configuration
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("mohanmithun@proton.me", "Shopping Pods");
             var to = new EmailAddress(invoice.CustomerEmail, invoice.CustomerName);
