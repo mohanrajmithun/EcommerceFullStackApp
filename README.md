@@ -45,77 +45,99 @@ git clone git@github.com:mohanrajmithun/EcommerceFullStackApp.git
 cd EcommerceFullStackApp
 
 
-**Backend Setup**
+### **Backend Setup**
+
 Navigate to the Backend directory
 
 cd Backend
 
-**Install dependencies for each service**
+### **Install dependencies for each service**
+
 For each of the microservices, run the following commands:
 
 cd <MicroserviceName>  # Example: cd CustomerDataApi
 dotnet restore
 
-**Set up RabbitMQ**
+###**Set up RabbitMQ**
+
 Run RabbitMQ in a Docker container to enable inter-service communication:
 
 docker run -d --hostname my-rabbit --name some-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 
-**Run Database Migrations**
+### **Run Database Migrations**
 
 Each microservice has a database migration setup. First, create a database called Ecommerce. Then, for each service, navigate to its directory and run the migration:
 
 cd <MicroserviceName>  # Example: cd CustomerDataApi
+
 dotnet ef database update
 
-**Repeat this step for**
+### **Repeat this step for**
 
 CustomerDataApi
+
 ProductsDataApiService
+
 SaleOrderDataService
+
 SaleOrderProcessingAPI
+
 SalesInvoiceGeneratorAPIService
 
-**Run each microservice**
+### **Run each microservice**
+
 Open separate terminal windows for each microservice and run:
 
 cd <MicroserviceName>  # Example: cd CustomerDataApi
 dotnet run
+
 Repeat for each service:
 
 CustomerDataApi
+
 ProductsDataApiService
+
 SaleOrderDataService
+
 SaleOrderProcessingAPI
+
 SalesInvoiceGeneratorAPIService
 
-**Frontend Setup**
+### **Frontend Setup**
+
 Navigate to the Frontend directory
 
 cd ../Frontend
+
 Install Angular dependencies
+
 npm install
 
-**Run the Angular application**
+### **Run the Angular application**
 
 ng serve
 
-**Access the Application**
+### **Access the Application**
+
 
 Angular Application: http://localhost:4200
 The user-facing frontend application.
 
-**Backend APIs: Each microservice will be running on its respective port (configured in each project).**
+### **Backend APIs: Each microservice will be running on its respective port (configured in each project).**
 
-**Key Features**
+### **Key Features**
+
 Microservices Architecture: Independent services for modularity and scalability.
+
 RabbitMQ: Ensures efficient communication between key services.
+
 Angular Frontend: Provides a dynamic, user-friendly interface for customers.
+
 Shared Library: Common code to avoid duplication and ensure consistent functionality across services.
 
-**Contributing**
+### **Contributing**
 We welcome contributions! Whether it's bug fixes, new features, or suggestions for improvement, feel free to open an issue or submit a pull request.
 
-**License**
+### **License**
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
