@@ -90,8 +90,7 @@
               "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\appsettings.json",
               "ViewState": "AgIAABkAAAAAAAAAAAAAACoAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-19T20:37:41.851Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-19T20:37:41.851Z"
             },
             {
               "$type": "Document",
@@ -103,8 +102,7 @@
               "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\Interfaces\\IInvoicePdfGeneratorService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T05:24:40.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-08T05:24:40.317Z"
             },
             {
               "$type": "Document",
@@ -116,8 +114,7 @@
               "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T05:50:34.408Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-08T05:50:34.408Z"
             },
             {
               "$type": "Document",
@@ -127,7 +124,7 @@
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\services\\InvoicePdfGeneratorService.cs",
               "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\services\\InvoicePdfGeneratorService.cs",
               "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\services\\InvoicePdfGeneratorService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-08T05:25:15.822Z",
               "EditorCaption": ""
@@ -142,8 +139,7 @@
               "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
               "ViewState": "AgIAACUAAAAAAAAAAAAAACsAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-08-08T05:21:54.24Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-08T05:21:54.24Z"
             },
             {
               "$type": "Document",
