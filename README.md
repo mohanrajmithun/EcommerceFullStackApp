@@ -58,11 +58,13 @@ dotnet restore
 
 **Set up RabbitMQ**
 Run RabbitMQ in a Docker container to enable inter-service communication:
+
 docker run -d --hostname my-rabbit --name some-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 
 **Run Database Migrations**
 
 Each microservice has a database migration setup. First, create a database called Ecommerce. Then, for each service, navigate to its directory and run the migration:
+
 cd <MicroserviceName>  # Example: cd CustomerDataApi
 dotnet ef database update
 
@@ -76,6 +78,7 @@ SalesInvoiceGeneratorAPIService
 
 **Run each microservice**
 Open separate terminal windows for each microservice and run:
+
 cd <MicroserviceName>  # Example: cd CustomerDataApi
 dotnet run
 Repeat for each service:
@@ -94,9 +97,11 @@ Install Angular dependencies
 npm install
 
 **Run the Angular application**
+
 ng serve
 
 **Access the Application**
+
 Angular Application: http://localhost:4200
 The user-facing frontend application.
 
