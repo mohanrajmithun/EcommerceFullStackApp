@@ -1,4 +1,4 @@
-EcommerceFullStackApp
+#EcommerceFullStackApp
 Welcome to the EcommerceFullStackApp repository! 
 This project showcases a full-stack e-commerce solution built using .NET Core Web APIs for the backend and Angular for the frontend. 
 The backend is designed as a collection of microservices, ensuring scalability, flexibility, and ease of development.
