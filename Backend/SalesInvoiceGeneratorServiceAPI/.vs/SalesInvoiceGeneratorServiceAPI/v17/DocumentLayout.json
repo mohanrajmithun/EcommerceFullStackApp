@@ -88,9 +88,10 @@
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\appsettings.json",
               "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\appsettings.json",
               "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\appsettings.json",
-              "ViewState": "AgIAABkAAAAAAAAAAAAAACoAAABUAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAACoAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-19T20:37:41.851Z"
+              "WhenOpened": "2024-10-19T20:37:41.851Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -124,7 +125,7 @@
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\services\\InvoicePdfGeneratorService.cs",
               "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\services\\InvoicePdfGeneratorService.cs",
               "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\services\\InvoicePdfGeneratorService.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFYAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-08T05:25:15.822Z",
               "EditorCaption": ""
@@ -137,9 +138,10 @@
               "RelativeDocumentMoniker": "SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
               "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SalesInvoiceGeneratorServiceAPI\\SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
               "RelativeToolTip": "SalesInvoiceGeneratorServiceAPI\\appsettings.Development.json",
-              "ViewState": "AgIAACUAAAAAAAAAAAAAACsAAABUAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-08-08T05:21:54.24Z"
+              "WhenOpened": "2024-08-08T05:21:54.24Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
