@@ -40,7 +40,7 @@ The frontend is developed with **Angular**, providing a smooth and responsive us
 ## **Setup and Installation**
 
 ### **Clone the Repository**
-git clone <your-github-repo-url>
+git clone git@github.com:mohanrajmithun/EcommerceFullStackApp.git
 cd EcommerceFullStackApp
 
 
