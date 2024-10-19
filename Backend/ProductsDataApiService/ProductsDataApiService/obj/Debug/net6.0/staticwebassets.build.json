@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "gl7hJCKJIC86ESqhevktLfydkERSmxDexv6hGhUKwo0=",
+  "Source": "ProductsDataApiService",
+  "BasePath": "_content/ProductsDataApiService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

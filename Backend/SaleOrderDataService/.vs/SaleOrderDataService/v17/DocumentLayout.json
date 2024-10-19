@@ -1,0 +1,328 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\saleorderdataservice\\saleorderdataservice\\services\\saleorderdataapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|solutionrelative:saleorderdataservice\\services\\saleorderdataapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\saleorderdataservice\\saleorderdataservice\\infrastructure\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|solutionrelative:saleorderdataservice\\infrastructure\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\saleorderdataservice\\saleorderdataservice\\serviceclients\\customerdataserviceclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|solutionrelative:saleorderdataservice\\serviceclients\\customerdataserviceclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\saleorderdataservice\\saleorderdataservice\\controllers\\saleorderdataservicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|solutionrelative:saleorderdataservice\\controllers\\saleorderdataservicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\saleorderdataservice\\saleorderdataservice\\serviceclients\\productdataserviceclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|solutionrelative:saleorderdataservice\\serviceclients\\productdataserviceclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\saleorderdataservice\\saleorderdataservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|solutionrelative:saleorderdataservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|c:\\users\\mohan\\source\\repos\\ecommercefullstackapp\\backend\\saleorderdataservice\\saleorderdataservice\\saleorderdataservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{02B030EF-F25B-461A-ABBC-D43B2DD3BABB}|SaleOrderDataService\\SaleOrderDataService.csproj|solutionrelative:saleorderdataservice\\saleorderdataservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\Invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\ProcessedOrder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\SaleOrderDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Controllers\\SaleOrderProcessingController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Services\\SaleOrderProcessingService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\ServiceClients\\SaleOrderDataServiceClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ISaleOrderDataService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\IProductDataServiceClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ICustomerDataServiceClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ISaleOrderDataServiceClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SaleOrderDataApiService.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\services\\SaleOrderDataApiService.cs",
+              "RelativeDocumentMoniker": "SaleOrderDataService\\services\\SaleOrderDataApiService.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\services\\SaleOrderDataApiService.cs",
+              "RelativeToolTip": "SaleOrderDataService\\services\\SaleOrderDataApiService.cs",
+              "ViewState": "AgIAALIAAAAAAAAAAAAhwMMAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T01:26:44.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Invoice.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\Invoice.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\Invoice.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\Invoice.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\Invoice.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAowC8AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-22T06:39:27.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SaleOrderDataServiceController.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\Controllers\\SaleOrderDataServiceController.cs",
+              "RelativeDocumentMoniker": "SaleOrderDataService\\Controllers\\SaleOrderDataServiceController.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\Controllers\\SaleOrderDataServiceController.cs",
+              "RelativeToolTip": "SaleOrderDataService\\Controllers\\SaleOrderDataServiceController.cs",
+              "ViewState": "AQIAAIsAAAAAAAAAAAAhwJIAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T23:10:04.267Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProcessedOrder.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\ProcessedOrder.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\ProcessedOrder.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\ProcessedOrder.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\ProcessedOrder.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T21:41:42.435Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CustomerDataServiceClient.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\ServiceClients\\CustomerDataServiceClient.cs",
+              "RelativeDocumentMoniker": "SaleOrderDataService\\ServiceClients\\CustomerDataServiceClient.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\ServiceClients\\CustomerDataServiceClient.cs",
+              "RelativeToolTip": "SaleOrderDataService\\ServiceClients\\CustomerDataServiceClient.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAIA1wBoAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T23:10:04.244Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductDataServiceClient.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\ServiceClients\\ProductDataServiceClient.cs",
+              "RelativeDocumentMoniker": "SaleOrderDataService\\ServiceClients\\ProductDataServiceClient.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\ServiceClients\\ProductDataServiceClient.cs",
+              "RelativeToolTip": "SaleOrderDataService\\ServiceClients\\ProductDataServiceClient.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T00:47:45.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\Infrastructure\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "SaleOrderDataService\\Infrastructure\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\Infrastructure\\AppDbContext.cs",
+              "RelativeToolTip": "SaleOrderDataService\\Infrastructure\\AppDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T23:43:36.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SaleOrderDTO.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\SaleOrderDTO.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\SaleOrderDTO.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\SaleOrderDTO.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Shared_Entities\\SaleOrderDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA0AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T23:45:19.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SaleOrderProcessingController.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Controllers\\SaleOrderProcessingController.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Controllers\\SaleOrderProcessingController.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Controllers\\SaleOrderProcessingController.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Controllers\\SaleOrderProcessingController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBoAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T20:32:27.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SaleOrderProcessingService.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Services\\SaleOrderProcessingService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Services\\SaleOrderProcessingService.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Services\\SaleOrderProcessingService.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Services\\SaleOrderProcessingService.cs",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAAAGsAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T20:32:43.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\appsettings.Development.json",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\appsettings.Development.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-21T22:36:11.172Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SaleOrderDataServiceClient.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\ServiceClients\\SaleOrderDataServiceClient.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAowC0AAABfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T21:32:22.872Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\Program.cs",
+              "RelativeDocumentMoniker": "SaleOrderDataService\\Program.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\Program.cs",
+              "RelativeToolTip": "SaleOrderDataService\\Program.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAAADUAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T23:41:34.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ISaleOrderDataService.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ISaleOrderDataService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ISaleOrderDataService.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ISaleOrderDataService.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ISaleOrderDataService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAABSAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T23:29:34.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IProductDataServiceClient.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\IProductDataServiceClient.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\IProductDataServiceClient.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\IProductDataServiceClient.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\IProductDataServiceClient.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T23:54:43.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ICustomerDataServiceClient.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ICustomerDataServiceClient.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ICustomerDataServiceClient.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ICustomerDataServiceClient.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ICustomerDataServiceClient.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T23:45:57.366Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Program.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Program.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SaleOrderProcessingAPI\\SaleOrderProcessingAPI\\Program.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T21:35:53.367Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ISaleOrderDataServiceClient.cs",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ISaleOrderDataServiceClient.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ISaleOrderDataServiceClient.cs",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ISaleOrderDataServiceClient.cs",
+              "RelativeToolTip": "..\\..\\..\\EcommerceMicroServicesAPI\\SalesAPILibrary\\Interfaces\\ISaleOrderDataServiceClient.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T21:33:23.942Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SaleOrderDataService.csproj",
+              "DocumentMoniker": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\SaleOrderDataService.csproj",
+              "RelativeDocumentMoniker": "SaleOrderDataService\\SaleOrderDataService.csproj",
+              "ToolTip": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\SaleOrderDataService\\SaleOrderDataService\\SaleOrderDataService.csproj",
+              "RelativeToolTip": "SaleOrderDataService\\SaleOrderDataService.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAABVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-08-05T23:40:16.526Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

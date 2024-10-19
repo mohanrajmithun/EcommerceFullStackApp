@@ -1,0 +1,276 @@
+[
+  {
+    "ContainingType": "SaleOrderDataService.Controllers.SaleOrderDataServiceController",
+    "Method": "AddProductsToSaleOrder",
+    "RelativePath": "api/SaleOrderDataService/AddProductsToSaleOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoiceNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "productid",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Threading.Tasks.Task\u00601[[SalesAPILibrary.Shared_Entities.SaleOrderDTO, SalesAPILibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SaleOrderDataService.Controllers.SaleOrderDataServiceController",
+    "Method": "CreateSaleOrder",
+    "RelativePath": "api/SaleOrderDataService/CreateSaleOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "saleOrder",
+        "Type": "SalesAPILibrary.Shared_Entities.SaleOrderDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SalesAPILibrary.Shared_Entities.SaleOrder",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SaleOrderDataService.Controllers.SaleOrderDataServiceController",
+    "Method": "GetAllSaleOrders",
+    "RelativePath": "api/SaleOrderDataService/GetAllSaleOrder",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IList\u00601[[SalesAPILibrary.Shared_Entities.SaleOrderDTO, SalesAPILibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SaleOrderDataService.Controllers.SaleOrderDataServiceController",
+    "Method": "GetOrderTotalbyInvoiceNumber",
+    "RelativePath": "api/SaleOrderDataService/GetOrderTotal",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoicenumber",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Decimal",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SaleOrderDataService.Controllers.SaleOrderDataServiceController",
+    "Method": "GetProductIdsforInvoice",
+    "RelativePath": "api/SaleOrderDataService/GetProductIdsforInvoice",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoicenumber",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IList\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SaleOrderDataService.Controllers.SaleOrderDataServiceController",
+    "Method": "GetSaleOrderbyInvoiceNumber",
+    "RelativePath": "api/SaleOrderDataService/GetSaleOrder",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoicenumber",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SalesAPILibrary.Shared_Entities.SaleOrderDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SaleOrderDataService.Controllers.SaleOrderDataServiceController",
+    "Method": "GetSaleOrderForCustomer",
+    "RelativePath": "api/SaleOrderDataService/GetSaleOrderforCustomer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerid",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IList\u00601[[SalesAPILibrary.Shared_Entities.SaleOrder, SalesAPILibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SaleOrderDataService.Controllers.SaleOrderDataServiceController",
+    "Method": "RemoveProductsFromSaleOrder",
+    "RelativePath": "api/SaleOrderDataService/RemoveProductsFromSaleOrder",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoiceNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "productid",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Threading.Tasks.Task\u00601[[SalesAPILibrary.Shared_Entities.SaleOrderDTO, SalesAPILibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SaleOrderDataService.Controllers.SaleOrderDataServiceController",
+    "Method": "UpdateDeliveryAddress",
+    "RelativePath": "api/SaleOrderDataService/UpdateDeliveryAddress",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoiceNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "deliveryAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SalesAPILibrary.Shared_Entities.SaleOrderDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SaleOrderDataService.Controllers.SaleOrderDataServiceController",
+    "Method": "UpdateOrderStatus",
+    "RelativePath": "api/SaleOrderDataService/UpdateOrderStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoiceNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "orderStatus",
+        "Type": "SalesAPILibrary.Shared_Enums.OrderStatus",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SalesAPILibrary.Shared_Entities.SaleOrderDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
