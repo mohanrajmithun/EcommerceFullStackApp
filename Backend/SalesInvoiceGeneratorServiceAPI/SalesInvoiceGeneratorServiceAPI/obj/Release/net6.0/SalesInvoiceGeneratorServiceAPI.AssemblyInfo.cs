@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SalesInvoiceGeneratorServiceAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+457e73b0f5904ff51e543f049342b9775f6830ba")]
 [assembly: System.Reflection.AssemblyProductAttribute("SalesInvoiceGeneratorServiceAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SalesInvoiceGeneratorServiceAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

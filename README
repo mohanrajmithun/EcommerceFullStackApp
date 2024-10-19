@@ -1,0 +1,84 @@
+# EcommerceFullStackApp
+
+Welcome to the EcommerceFullStackApp repository! This project consists of a backend built with .NET Core Web APIs and a frontend Angular application, designed to provide a complete e-commerce solution. The backend is structured as a set of microservices, allowing for independent scaling and development.
+
+## Project Structure
+
+### Backend
+
+The backend consists of the following microservices:
+
+1. **CustomerDataApi**: Handles customer-related data and operations.
+2. **ProductsDataApiService**: Manages product information and catalog.
+3. **SaleOrderDataService**: Manages order details and processing.
+4. **SaleOrderProcessingAPI**: Responsible for processing sales orders.
+5. **SalesInvoiceGeneratorAPIService**: Generates and sends invoices for completed orders.
+
+### Shared Library
+
+- **SalesAPILibrary**: Contains common code shared across all backend projects, promoting code reusability and maintainability.
+
+### Communication
+
+The **SaleOrderProcessingAPI** and **SalesInvoiceGeneratorAPIService** communicate using **RabbitMQ**, which is hosted in a Docker container. This asynchronous messaging service enables efficient inter-service communication.
+
+### Frontend
+
+The frontend is developed using **Angular** and serves as the user interface for interacting with the backend services. It consumes the APIs provided by the backend to perform various operations related to the e-commerce platform.
+
+## Setup and Installation
+
+To get started with this project, follow these steps:
+
+1. Clone the repository
+git clone <your-github-repo-url>
+
+2. Navigate to the Backend directory
+cd EcommerceFullStackApp/Backend
+
+3. Install dependencies for each service
+cd CustomerDataApi
+dotnet restore
+cd ../ProductsDataApiService
+dotnet restore
+cd ../SaleOrderDataService
+dotnet restore
+cd ../SaleOrderProcessingAPI
+dotnet restore
+cd ../SalesInvoiceGeneratorAPIService
+dotnet restore
+
+4. Set up RabbitMQ using Docker
+docker run -d --hostname my-rabbit --name some-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+
+5. Run each microservice in separate PowerShell windows (repeat for each service)
+cd CustomerDataApi
+dotnet run
+# Open a new window and repeat for other services:
+cd ../ProductsDataApiService
+dotnet run
+cd ../SaleOrderDataService
+dotnet run
+cd ../SaleOrderProcessingAPI
+dotnet run
+cd ../SalesInvoiceGeneratorAPIService
+dotnet run
+
+6. Navigate to the Frontend directory
+cd ../../Frontend
+
+7. Install Angular dependencies
+npm install
+
+8. Run the Angular application
+ng serve
+
+Once everything is set up and running, you can access the Angular application at http://localhost:4200.
+The backend APIs will be available at the respective ports configured in each microservice.
+
+Contributing
+Contributions are welcome! 
+If you have suggestions for improvements or new features, please open an issue or submit a pull request.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
