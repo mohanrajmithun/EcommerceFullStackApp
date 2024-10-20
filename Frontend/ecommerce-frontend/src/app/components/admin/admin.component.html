@@ -1,0 +1,121 @@
+<div *ngIf="isUserRoleadmin" class="admin-container">
+  <!-- Tab Navigation -->
+  <div class="tab-navigation">
+    <button (click)="selectTab('salesOrders')" [class.active]="activeTab === 'salesOrders'">Sales Orders</button>
+    <button (click)="selectTab('productInventory')" [class.active]="activeTab === 'productInventory'">Product Inventory</button>
+  </div>
+
+  <!-- Sales Orders Management -->
+  <section *ngIf="activeTab === 'salesOrders'" class="sales-orders-section">
+    <h2>Sales Orders</h2>
+    <div *ngFor="let order of orders" class="order-card">
+      <div class="order-details">
+        <p><strong>Order ID:</strong> {{ order.invoiceNumber }}</p>
+        <p><strong>Customer:</strong> {{ customers[order.customerId] || 'Fetching...' }}</p>
+        <p><strong>Delivery Address:</strong> {{ order.deliveryAddress }}</p>
+        <p><strong>Status:</strong> {{ MapOrderStatus(order.status) }}</p>
+        <p><strong>Total Price:</strong> {{ order.netTotal | currency }}</p>
+        <div>
+          <label for="status-{{ order.invoiceNumber }}">Update Status:</label>
+          <select id="status-{{ order.invoiceNumber }}" [(ngModel)]="order.status">
+            <option *ngFor="let status of orderStatuses" [value]="status">{{ status }}</option>
+          </select>
+          <button (click)="updateOrderStatus(order.invoiceNumber, order.status)">Update Status</button>
+
+          <div *ngIf="updatedOrderId === order.invoiceNumber && showUpdatePopup" class="update-popup">
+            Order status updated successfully!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Inventory Management -->
+  <section *ngIf="activeTab === 'productInventory'" class="product-inventory-section">
+    <h2>Product Inventory</h2>
+    <div *ngFor="let product of products" class="product-card">
+      <div class="product-details">
+        <h4>{{ product.productName }}</h4>
+        <p><strong>Category:</strong> {{ product.categoryId }}</p>
+        <p><strong>Stock:</strong> {{ product.stockQuantity }}</p>
+    
+        <div class="inventory-controls">
+          <button (click)="updateStock(product.productId, product.stockQuantity - 1)" 
+                  [disabled]="product.stockQuantity <= 0">-</button>
+          <span>{{ product.stockQuantity }}</span>
+          <button (click)="updateStock(product.productId, product.stockQuantity + 1)">+</button>
+        </div>
+      </div>
+
+      <div class="product-image-container">
+        <div *ngIf="product.imageName; else fallbackImage">
+          <img [src]="'/assets/images/' + product.imageName" alt="Product Image" class="product-image"/>
+        </div>
+        <ng-template #fallbackImage>
+          <img src="/assets/images/fallback.jfif" alt="Fallback Image" class="product-image"/>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Add New Product Form -->
+    <div class="add-product-section">
+      <h3>Add New Product</h3>
+      <form (ngSubmit)="addNewProduct()">
+        <div>
+          <label for="productName">Product Name:</label>
+          <input id="productName" [(ngModel)]="newProduct.productName" name="productName" placeholder="Product Name" required>
+        </div>
+        <div>
+          <label for="productCode">Product Code:</label>
+          <input id="productCode" [(ngModel)]="newProduct.productCode" name="productCode" placeholder="Product Code" required>
+        </div>
+        <div>
+          <label for="price">Price:</label>
+          <input id="price"  [(ngModel)]="newProduct.price" name="price" placeholder="Price" required>
+        </div>
+
+        <div>
+          <label for="productColour">Product Colour:</label>
+          <select 
+            id="productColour" 
+            [(ngModel)]="newProduct.productColor" 
+            (change)="onColourChange($event)" 
+            required>
+            <option value="" disabled selected>Select a color</option>
+            <option *ngFor="let colour of productColours" [value]="colour">{{ colour }}</option>
+          </select>
+        </div>
+        <div>
+          <label for="productSize">Product Size:</label>
+          <select 
+            id="productSize" 
+            [(ngModel)]="newProduct.productSize" 
+            (change)="onSizeChange($event)" 
+            required>
+            <option value="" disabled selected>Select a size</option>
+            <option *ngFor="let size of productSizes" [value]="size">{{ size }}</option>
+          </select>
+        </div>
+        <div>
+          <label for="stockQuantity">Stock Quantity:</label>
+          <input id="stockQuantity" type="number" [(ngModel)]="newProduct.stockQuantity" name="stockQuantity" placeholder="Stock Quantity" required>
+        </div>
+        <div>
+          <label for="category">Product Category:</label>
+          <select 
+            id="category" 
+            [(ngModel)]="newProduct.categoryId"  
+            (change)="selectCategory($event)" 
+            required 
+            aria-label="Product category selection">
+            <option value="" disabled selected>Select a category</option> <!-- Optional placeholder -->
+            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+          </select>
+        </div>
+        <button type="submit" class="add-product-button" [disabled]="isAddProductDisabled">Add Product</button>
+      </form>
+    </div>
+    
+
+
+

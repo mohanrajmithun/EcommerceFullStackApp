@@ -1,0 +1,135 @@
+/* General Page Styling */
+body {
+  background-color: #03071e; /* Dark background */
+  color: white; /* White text for contrast */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h2, h3, h4 {
+  color: #f0ece6; /* Light color for headings */
+}
+
+/* Shopping Cart Container */
+.product-card {
+  background-color: #1a1a1a; /* Darker black for product card */
+  border: 1px solid #6a040f; /* Deep red border */
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.Header{
+  color:#03071e;
+  padding: 10px 15px;
+  margin-right: 10px;
+
+
+}
+
+.product-card:hover {
+  background-color: #2c2c2c; /* Slightly lighter hover effect */
+}
+
+.product-details {
+  flex: 1;
+}
+
+p {
+  margin: 8px 0;
+  color: white; /* Ensuring all paragraph text is white */
+}
+
+label {
+  color: white; /* Ensuring all labels are white */
+}
+
+/* Buttons */
+button {
+  background-color: #dc2f02; /* Bright orange-red */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #6a040f; /* Deep red on hover */
+}
+
+button:disabled {
+  background-color: #555; /* Grey for disabled state */
+  cursor: not-allowed;
+}
+
+.remove-btn {
+  background-color: #6a040f;
+  padding: 6px 10px;
+}
+
+.checkout-btn {
+  width: 100%;
+  background-color: #f48c06; /* Accent amber color for checkout button */
+  padding: 12px;
+  font-size: 16px;
+}
+
+.checkout-btn:hover {
+  background-color: #dc2f02; /* Darker amber on hover */
+}
+
+/* Out of Stock Styling */
+.out-of-stock {
+  color: #f00; /* Red for out-of-stock message */
+}
+
+/* Cart Summary */
+.cart-summary {
+  background-color: #1a1a1a; /* Dark container */
+  padding: 16px;
+  border: 1px solid #f48c06; /* Accent amber border */
+  border-radius: 8px;
+  margin-top: 24px;
+}
+
+.cart-summary h3 {
+  color: #dc2f02; /* Bright total price */
+}
+
+.cart-summary label {
+  color: white; /* Ensuring the delivery address label is white */
+}
+
+/* Form Input Styling */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 12px 0;
+  border: 1px solid #f48c06; /* Amber border */
+  border-radius: 4px;
+  background-color: #2c2c2c;
+  color: white;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .product-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .remove-btn {
+    align-self: flex-end;
+  }
+}

@@ -1,0 +1,37 @@
+<div *ngIf="isProcessing" class="alert alert-danger" role="alert">
+  {{ processingMessage }}
+</div>
+
+<div *ngIf="cart">
+  <h2 class="Header">My Shopping Cart</h2>
+  <div *ngFor="let productInfo of cart.products; let i = index" class="product-card">
+    <div class="product-details">
+      <h4>{{ productInfo.product.productName }}</h4>
+      <p>Price: {{ productInfo.product.price | currency }}</p>
+      <p>Quantity: 
+        <button (click)="updateQuantity(productInfo.product.productId, productInfo.quantity - 1)" 
+                [disabled]="productInfo.quantity <= 1 || outOfStockStatus[i]">-</button>
+        {{ productInfo.quantity }}
+        <button (click)="updateQuantity(productInfo.product.productId, productInfo.quantity + 1)" 
+                [disabled]="outOfStockStatus[i]">+</button>
+      </p>
+      <p *ngIf="outOfStockStatus[i]" class="out-of-stock">Out of Stock</p>
+      <p>Subtotal: {{ productInfo.subtotal | currency }}</p>
+    </div>
+    <button class="remove-btn" (click)="removeProduct(productInfo.product.productId)">Remove</button>
+  </div>
+
+  <div class="cart-summary">
+    <h3>Total: {{ cart.totalPrice | currency }}</h3>
+    <label for="address">Delivery Address:</label>
+    <input [(ngModel)]="cart.deliveryAddress" id="address" placeholder="Enter delivery address">
+    <button class="checkout-btn" 
+    (click)="checkout()" 
+    [disabled]="cart.products.length === 0 || cart.totalPrice === 0">
+Checkout
+</button>  </div>
+</div>
+
+<div *ngIf="!cart">
+  <p>Your cart is empty</p>
+</div>

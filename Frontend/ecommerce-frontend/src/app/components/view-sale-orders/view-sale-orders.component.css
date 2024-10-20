@@ -1,0 +1,83 @@
+.customer-container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #03071e; /* Dark background */
+    color: white; /* White text for contrast */
+  }
+  
+  .sales-orders-section {
+    margin-bottom: 40px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #f48c06; /* Warm amber color for main heading */
+    margin-bottom: 30px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #f48c06; /* Warm amber color for section heading */
+    margin-bottom: 20px;
+  }
+  
+  .order-card {
+    background-color: #1a1a1a; /* Dark card background */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Darker shadow for depth */
+    transition: transform 0.2s;
+    border: 1px solid #6a040f; /* Deep red border */
+  }
+  
+  .order-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .order-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  a.order-link {
+    color: #dc2f02; /* Bright orange-red for clickable order ID */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+  }
+  
+  a.order-link:hover {
+    color: #f48c06; /* Change to amber on hover */
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  .order-details p strong {
+    color: #f48c06; /* Amber color for labels like "Order ID" */
+  }
+  
+  label {
+    color: white;
+  }
+  
+  .currency {
+    color: #f48c06; /* Make currency value stand out */
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #dc2f02; /* Bright orange-red buttons */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  button:hover {
+    background-color: #f48c06; /* Change button color on hover */
+  }
+  

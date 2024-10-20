@@ -1,0 +1,102 @@
+header {
+  background-color: #060607; /* Light background */
+  padding: 10px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow for depth */
+}
+
+.nav-link {
+  font-family: 'Roboto', sans-serif; /* Change to your preferred font */
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link::before {
+  font-size: 20px; /* Size of the emoji */
+  margin-right: 5px; /* Space between emoji and text */
+}
+
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-left, .navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.home-btn, .cart-btn, .toggle-btn {
+  background-color: var(--accent-color); /* Use the vibrant accent color */
+  border: 2px solid #dc2f02; /* Bright orange-red border for sharpness */
+  color: rgb(9, 7, 7);
+  padding: 10px 15px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px; /* Slightly larger border radius */
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s; /* Transition effects */
+}
+
+.home-btn:hover, .cart-btn:hover, .toggle-btn:hover {
+  background-color: #82ad33; /* Darker accent color on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.cart-btn i, .toggle-btn i {
+  margin-left: 5px;
+}
+
+.categories-dropdown {
+  position: absolute;
+  top: 60px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.categories-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categories-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth hover transition */
+}
+
+.categories-dropdown li:hover {
+  background-color: var(--accent-color); /* Bright orange-red hover background */
+  color: white;
+  font-weight: bold; /* Make text bold on hover */
+}
+
+/* Styles for the navbar links */
+.nav-link {
+  color: var(--primary-color); /* Use the primary color for links */
+  font-weight: bold; /* Bold text for better visibility */
+}
+
+.nav-link:hover {
+  color: var(--accent-color); /* Change color on hover for emphasis */
+}
+
+.navbar-brand {
+  color: rgb(19, 164, 231); /* Black text color */
+  background-color: #f0e4e4; /* Deep red background */
+  padding: 10px 15px; /*Padding around the text
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Make the text bold */
+}
+
+.navbar-brand:hover {
+  background-color: #f8f2f2; /* Bright orange-red on hover */
+  color: rgb(219, 13, 13); /* Change text color to white on hover */
+}

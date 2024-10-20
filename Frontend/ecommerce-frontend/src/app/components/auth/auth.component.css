@@ -1,0 +1,161 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f48c06; /* Warm amber */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow for contrast */
+  overflow: hidden;
+}
+
+.welcome-message {
+  flex: 1;
+  background-color: #03071e; /* Dark blue-black */
+  padding: 40px;
+  color: #914949;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.welcome-message h3 {
+  font-size: 2.5rem;
+  color: #eceee7;
+  margin-bottom: 20px;
+}
+
+.welcome-message p {
+  font-size: 1.2rem;
+  color: #f4f4f4;
+  line-height: 1.6;
+}
+
+.auth-container {
+  flex: 1;
+  padding: 40px;
+  background-color: #03071e; /* Dark blue-black for better contrast */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  border: 2px solid #dc2f02; /* Bright orange-red border for vibrancy */
+  border-radius: 5px;
+  padding: 12px;
+  color: white; /* White text for better visibility */
+  font-size: 1rem;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  background-color: #03071e; /* Dark background for vibrancy */
+}
+
+/* Style for the labels */
+.form-group label {
+  color: #f8f2f2; /* Light gray for better visibility */
+  font-size: 1rem; /* Ensures label is consistent with form input */
+  margin-bottom: 5px; /* Space between label and input */
+  display: block; /* Makes the label occupy the full width */
+}
+
+.form-control:focus {
+  border-color: #dc2f02; /* Bright border on focus */
+  outline: none;
+  box-shadow: 0 0 8px rgba(220, 47, 2, 0.8); /* Vibrant focus shadow */
+}
+
+.btn-primary {
+  background-color: #dc2f02; /* Bright orange-red */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.btn-primary:hover {
+  background-color: #f48c06; /* Bright hover color */
+}
+
+.btn-link {
+  color: #dbe913; /* Deep red */
+  text-decoration: underline;
+  font-size: 0.9rem;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* Prominent Register Link */
+.switch-to-register {
+  text-align: center;
+  margin-top: 20px;
+  color: #f8f2f2; /* Light gray for visibility */
+  font-weight: bold;
+}
+
+.switch-to-register a {
+  color: #6a040f; /* Deep red */
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.switch-to-register a:hover {
+  text-decoration: underline;
+}
+
+h2 {
+  color: #f8f2f2; /* Light gray for better visibility */
+}
+
+/* Centralized Error Message Styling */
+.error-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #dc3545; /* Red for error */
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 400px;
+  text-align: center;
+}
+
+.alert {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: #28a745; /* Success green */
+  color: white;
+}
+
+.alert-danger {
+  background-color: #dc3545; /* Error red */
+  color: white;
+}

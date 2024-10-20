@@ -1,0 +1,36 @@
+<div class="product-details-container">
+  <div *ngIf="loading" class="loading-message">Loading product details...</div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+
+  <div *ngIf="!loading && !error && product" class="product-details">
+    <div *ngIf="product.imageName; else fallbackImage">
+      <img [src]="'/assets/images/' + product.imageName" alt="Product Image" />
+    </div>
+    <ng-template #fallbackImage>
+      <img src="/assets/images/fallback.jfif" alt="Fallback Image" />
+    </ng-template>
+
+    <div class="product-info-section">
+      <h2 class="product-name">{{ product.productName }}</h2>
+      <p class="product-code">Code: {{ product.productCode }}</p>
+      <p class="product-price">Price: {{ product.price | currency:'USD' }}</p>
+      <p class="product-colour">Color: {{ product.productColor }}</p>
+      <p class="product-size">Size: {{ product.productSize}}</p>
+      <p [ngClass]="product.stockQuantity > 0 ? 'in-stock' : 'out-of-stock'" class="stock-status">
+        {{ product.stockQuantity > 0 ? 'In-Stock' : 'Out of stock' }}
+      </p>
+
+      <div class="action-buttons">
+        <!-- <button class="buy-now-button" [disabled]="product.stockQuantity < 1">Buy Now</button> -->
+        <button class="add-to-cart-button" [disabled]="product.stockQuantity < 1" (click)="AddProductToCart(product.productId,1)">Add to Cart</button>
+      </div>
+
+      <div *ngIf="IsProductAdded" class="alert alert-success" role="alert">
+        Product added to cart successfully!
+      </div>
+      <div *ngIf="IsErrorAddingProduct" class="alert alert-failure" role="alert">
+        Error adding the product to the cart!
+      </div>
+    </div>
+  </div>
+</div>

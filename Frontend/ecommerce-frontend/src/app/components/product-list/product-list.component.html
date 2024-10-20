@@ -1,0 +1,25 @@
+<div class="product-container">
+  <div *ngIf="loading" class="loading-message">Loading products...</div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+
+  <div *ngIf="!loading && !error" class="products-grid">
+    <div *ngFor="let product of products" class="product-card">
+      <div *ngIf="product.imageName; else fallbackImage" class = "product-image">
+        <img [src]="'/assets/images/' + product.imageName" alt="/assets/images/fallback.jfif" />
+      </div>
+      <ng-template #fallbackImage>
+        <img src="/assets/images/fallback.jfif" alt="Fallback Image" />
+      </ng-template>
+      <h3 class="product-title">{{ product.productName }}</h3>
+      <!-- <p class="product-code">Code: {{ product.productCode }}</p>
+      <p class="product-price">Price: {{ product.price | currency:'USD' }}</p>
+      <p class="product-colour" [ngStyle]="{'color': getColor(product.productColor)}">
+        Color: {{ mapProductColour(product.productColor) }}</p>
+      <p class="product-size">Size: {{ mapProductSize(product.productSize)}}</p> -->
+      <p [ngClass]="product.stockQuantity > 0 ? 'in-stock' : 'out-of-stock'" class="stock-status">
+        {{ product.stockQuantity > 0 ? 'In-Stock' : 'Out of stock' }}
+      </p>
+      <a [routerLink]="['/product', product.productId]" class="view-details-button">View Details</a>
+    </div>
+  </div>
+</div>

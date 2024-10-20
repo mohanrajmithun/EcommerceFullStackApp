@@ -1,0 +1,23 @@
+<div class="customer-container">
+    <h1>My Sale Orders</h1> <!-- Heading added here -->
+  
+    <!-- Sales Orders Section -->
+    <section class="sales-orders-section">
+      <div *ngFor="let order of orders" class="order-card">
+        <div class="order-details">
+            <p>
+                <strong>Order ID: </strong> 
+                <!-- Correct usage of routerLink with queryParams -->
+                <a [routerLink]="['/order-status']" [queryParams]="{ invoiceNumber: order.invoiceNumber }" class="order-link">
+                  {{ order.invoiceNumber }}
+                </a>
+              </p>
+          <p><strong>Customer:</strong> {{ customer?.customerName || 'Fetching...' }}</p>
+          <p><strong>Delivery Address:</strong> {{ order.deliveryAddress }}</p>
+          <p><strong>Status:</strong> {{ MapOrderStatus(order.status) }}</p>
+          <p><strong>Total Price:</strong> {{ order.netTotal | currency }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  

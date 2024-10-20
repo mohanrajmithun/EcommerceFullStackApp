@@ -1,0 +1,88 @@
+.product-container {
+    padding: 20px; /* Add padding around the container */
+    background-color: #03071e; /* Dark background */
+    border-radius: 8px; /* Rounded corners for the container */
+}
+
+.loading-message, .error-message {
+    text-align: center; /* Center text for loading and error messages */
+    font-size: 1.5rem; /* Increase font size */
+    margin: 20px 0; /* Space around messages */
+    color: #f48c06; /* Amber text for loading and error messages */
+}
+
+.products-grid {
+    display: grid; /* Use grid layout for products */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Responsive grid */
+    gap: 15px; /* Space between grid items */
+}
+
+.product-card {
+    display: flex; /* Use flexbox for card layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align items */
+    justify-content: flex-start; /* Align items to the top */
+    background-color: #6a040f; /* Deep red background for cards */
+    border: 1px solid #dc2f02; /* Bright orange-red border around cards */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
+    padding: 15px; /* Padding inside cards */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+}
+
+.product-card:hover {
+    transform: scale(1.05); /* Slightly scale up card on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+.product-image img {
+    width: 100%; /* Full width for images */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 4px; /* Round image corners */
+    max-height: 200px; /* Set a maximum height for the image */
+    object-fit: cover; /* Cover the area while maintaining aspect ratio */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+.product-title {
+    font-size: 1.4rem; /* Increase title font size */
+    font-weight: bold; /* Bold title */
+    margin: 10px 0; /* Space around title */
+    color: #f5f5f5; /* White text for better readability */
+    text-align: center; /* Center align title */
+}
+
+.product-code,
+.product-price,
+.product-colour,
+.product-size,
+.stock-status {
+    font-size: 0.95rem; /* Slightly larger font size for details */
+    margin: 5px 0; /* Space around details */
+    color: #f5f5f5; /* White text for details */
+}
+
+.view-details-button {
+    background-color: #f48c06; /* Amber button */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth background color change */
+}
+
+.view-details-button:hover {
+    background-color: #dc2f02; /* Darken button on hover */
+    transform: translateY(-2px); /* Slight upward movement on hover */
+}
+
+.in-stock {
+    color: #42f406; /* Amber for in-stock text */
+    font-weight: bold; /* Bold text */
+}
+
+.out-of-stock {
+    color: #dc2f02; /* Bright red for out-of-stock */
+    font-weight: bold; /* Bold text */
+}

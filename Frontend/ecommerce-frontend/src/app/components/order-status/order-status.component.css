@@ -1,0 +1,70 @@
+/* General Page Styling */
+body {
+    background-color: #03071e; /* Dark background */
+    color: white; /* White text for contrast */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h2, h3, p {
+    color: white; /* White color for headings and text */
+  }
+  
+  /* Order Status Container */
+  .order-status-container {
+    background-color: #1a1a1a; /* Dark container for order status */
+    border: 1px solid #6a040f; /* Deep red border */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  
+  .order-status-container p {
+    margin: 10px 0;
+  }
+  
+  .order-details {
+    margin-top: 16px;
+    background-color: #2c2c2c; /* Slightly lighter background */
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #f48c06; /* Accent amber border for order details */
+  }
+  
+  /* Success Message */
+  .order-details p {
+    color: white;
+  }
+  
+  .error {
+    color: #f00; /* Red for error messages */
+  }
+  
+  /* Buttons */
+  button {
+    background-color: #dc2f02; /* Bright orange-red */
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #6a040f; /* Deep red on hover */
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .order-status-container {
+      padding: 16px;
+    }
+  
+    .order-details {
+      padding: 12px;
+    }
+  }
+  

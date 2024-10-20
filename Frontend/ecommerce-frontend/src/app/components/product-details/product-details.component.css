@@ -1,0 +1,115 @@
+.product-details-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-size: 18px;
+}
+
+.product-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.product-image-section {
+  flex: 0.75 0.75 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-info-section {
+  flex: 1 1 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.product-image {
+  width: 100%;
+  max-width: 300px; /* Set a max width */
+  height: 300px; /* Set a fixed height */
+  object-fit: cover; /* Ensure the image fills the space without distortion */
+  border-radius: 10px;
+}
+
+.product-name {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.product-code,
+.product-price,
+.product-color,
+.product-size {
+  font-size: 18px;
+}
+
+.stock-status {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.in-stock {
+  color: green;
+}
+
+.out-of-stock {
+  color: red;
+}
+
+.action-buttons {
+  margin-top: 20px;
+}
+
+.buy-now-button,
+.add-to-cart-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Styles for buy now button */
+.buy-now-button {
+  background-color: #ff6f61;
+  color: white;
+}
+
+.buy-now-button:hover {
+  background-color: #ff4f41;
+}
+
+/* Styles for add to cart button */
+.add-to-cart-button {
+  background-color: #007bff;
+  color: rgb(7, 6, 6);
+}
+
+.add-to-cart-button:hover {
+  background-color: #0056b3;
+}
+
+/* Styles for disabled buttons */
+button:disabled {
+  opacity: 0.5;              /* Makes the button look faded */
+  cursor: not-allowed;       /* Prevents the button from being clicked */
+  background-color: #cccccc; /* Optional: change background color when disabled */
+}
