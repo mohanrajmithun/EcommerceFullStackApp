@@ -3,42 +3,58 @@ import { inject } from '@angular/core';
 import { TokenService } from '../services/token.service';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { trace, context, ROOT_CONTEXT, Span } from '@opentelemetry/api';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  // Use inject to get the TokenService and Router in a functional interceptor
   const tokenService = inject(TokenService);
   const router = inject(Router);
-
-  // Get the token from the TokenService
   const token = tokenService.getToken();
 
-  // Clone the request and add the Authorization header if the token exists
-  const authReq = token
-    ? req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-    : req;
+  // Set span name dynamically based on request
+  const spanName = `HTTP ${req.method} ${req.urlWithParams}`;
+  const traceparent = getCurrentTraceParent(spanName); // Pass spanName to getCurrentTraceParent
+  const authReq = req.clone({
+    setHeaders: {
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(traceparent ? { traceparent } : {}) // Add traceparent if available
+    }
+  });
 
-  // Pass the cloned request to the next handler
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      // Check for token expiration or invalidation
-     {
-        // Token is invalid or expired, handle the error
+      if (error.status === 401 || error.status === 403) {
         handleAuthError(tokenService, router);
       }
-      return throwError(() => error); // Re-throw the error for further handling
+      return throwError(() => error);
     })
   );
+};
+
+// Helper to retrieve traceparent header with dynamic span name
+function getCurrentTraceParent(spanName: string): string | null {
+  let currentSpan = trace.getSpan(context.active());
+
+  // If no active span, create a new one with the dynamic name
+  if (!currentSpan) {
+    const tracer = trace.getTracer('AngularFrontendApp');
+    currentSpan = tracer.startSpan(spanName, undefined, ROOT_CONTEXT);
+    context.with(context.active(), () => currentSpan?.end()); // End span immediately after creation
+    console.log("Created new span to propagate trace context:", currentSpan.spanContext().traceId);
+  }
+
+  if (currentSpan) {
+    const spanContext = currentSpan.spanContext();
+    const traceparent = `00-${spanContext.traceId}-${spanContext.spanId}-01`;
+    console.log("Traceparent header added:", traceparent);
+    return traceparent;
+  }
+
+  console.log("No active span found for traceparent");
+  return null;
 }
 
-// Helper function to handle token expiration/invalidation
+// Handle authorization errors
 function handleAuthError(tokenService: TokenService, router: Router) {
-  // Clear the token from local storage or memory
   tokenService.logout();
-
-  // Redirect to the login page
   router.navigate(['/login']);
 }

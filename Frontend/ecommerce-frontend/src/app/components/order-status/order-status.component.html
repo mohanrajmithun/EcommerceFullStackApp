@@ -1,34 +1,71 @@
-<div *ngIf="isProcessing">
-    <p>{{ processingMessage }}</p>
-  </div>
+<div *ngIf="isProcessing" class="alert alert-danger" role="alert">
+  {{ processingMessage }}
+</div>
 
 <div *ngIf="saleOrder">
-    <div class="order-status-container">
-      <h2>Order Status</h2>
-      <p>Invoice Number: {{ saleOrder.invoiceNumber }}</p>
-      <p>Order Status: {{ orderStatusDisplay }}</p>
-      <p>Total Price: {{ saleOrder.netTotal | currency }}</p>
-      <!-- Add more fields as needed -->
+  <div class="order-status-container">
+    <h3>Order Status: {{ orderStatusDisplay }}</h3>
+    <h3>Invoice Number: {{ saleOrder.invoiceNumber }}</h3>
+  </div>
 
-      <div class="order-status-container">
-        <p>Your order has been successfully placed!</p>
-        <p>An invoice has been emailed to your email address.</p>
-        <div class="order-details">
-        <p *ngIf="orderStatusDisplay === 'Shipped' || orderStatusDisplay === 'Delivered' || orderStatusDisplay === 'Completed'">
-          Your order has been {{ orderStatusDisplay.toLowerCase() }}. Thank you for shopping with us!
-        </p>
+  <div *ngIf="productsWithQuantity.length > 0">
+    <div class="total-price-container">
+      <h4>Products:</h4>
+    </div>      
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Size</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of productsWithQuantity">
+          <td>{{ item.product.productName }}</td>
+          <td>{{ item.product.productSize }}</td>
+          <td>{{ item.product.price | currency }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ (item.product.price * item.quantity) | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="total-price-container">
+    <h4>Total Price: {{ saleOrder.netTotal | currency }}</h4>
+  </div>
+
+  <!-- Add the Download Invoice button -->
+  <div class="download-invoice-container">
+    <button (click)="downloadInvoice(saleOrder.invoiceNumber)">Download Invoice</button>
+  </div>
+</div>
+
+<div class="order-details">
+  <!-- If order is cancelled, show cancelled message -->
+  <ng-container *ngIf="orderStatusDisplay === 'Cancelled'; else otherStatus">
+    <p>Your order has been cancelled.</p>
+  </ng-container>
+
+  <!-- Other order statuses -->
+  <ng-template #otherStatus>
+    <!-- If order is shipped, delivered, or completed, show thank you message -->
+    <ng-container *ngIf="orderStatusDisplay === 'Shipped' || orderStatusDisplay === 'Delivered' || orderStatusDisplay === 'Completed'; else cancelTemplate">
+      <p>Your order has been {{ orderStatusDisplay.toLowerCase() }}. Thank you for shopping with us!</p>
+    </ng-container>
+
+    <!-- If order is created or processing, show cancel button -->
+    <ng-template #cancelTemplate>
+      <p>Your order has been successfully placed! An invoice has been emailed to your email address.</p>
+      <div class="cancel-order-button">
+        <button (click)="cancelOrder()">Cancel Order</button>
       </div>
-  
-      <!-- Show a message based on order status -->
-      <p *ngIf="saleOrder.status === 'Shipped' || saleOrder.status === 'Delivered' || saleOrder.status === 'Completed'">
-        Your order has been {{ saleOrder.status.toLowerCase() }}. Thank you for shopping with us!
-      </p>
-    </div>
-  </div>
-  
+    </ng-template>
+  </ng-template>
+</div>
 
-  
-  <div *ngIf="errorMessage">
-    <p class="error">{{ errorMessage }}</p>
-  </div>
-  
+<div *ngIf="errorMessage">
+  <p class="error">{{ errorMessage }}</p>
+</div>

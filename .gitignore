@@ -1,2 +1,3 @@
 .vs/
 /Datadog
+/Backend/InvoiceDataService/InvoiceDataService/wwwroot/invoices
