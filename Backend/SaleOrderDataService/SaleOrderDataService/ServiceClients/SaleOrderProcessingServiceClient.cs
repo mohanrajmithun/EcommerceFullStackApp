@@ -1,8 +1,11 @@
-﻿using SalesAPILibrary.Interfaces;
+﻿
+
+using Microsoft.AspNetCore.Mvc;
+using SalesAPILibrary.Interfaces;
 using SalesOrderInvoiceAPI.Entities;
 using System.Text.Json;
 
-namespace ProductsDataApiService.ServiceClients
+namespace SaleOrderDataService.ServiceClients
 {
     public class SaleOrderProcessingServiceClient : ISaleOrderProcessingServiceClient
     {
@@ -53,7 +56,6 @@ namespace ProductsDataApiService.ServiceClients
             }
         }
 
-
         public async Task<List<ProcessedOrder>> ProcessShippedCancelledDeliveredOrders(string invoiceNumber)
         {
             try
@@ -90,6 +92,5 @@ namespace ProductsDataApiService.ServiceClients
                 throw;
             }
         }
-
     }
 }

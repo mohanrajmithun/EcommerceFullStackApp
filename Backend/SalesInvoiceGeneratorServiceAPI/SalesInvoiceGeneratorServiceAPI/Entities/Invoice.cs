@@ -1,4 +1,6 @@
-﻿using SalesAPILibrary.Shared_Enums;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using SalesAPILibrary.Shared_Enums;
 
 namespace SalesInvoiceGeneratorServiceAPI.Entities
 {
@@ -11,6 +13,10 @@ namespace SalesInvoiceGeneratorServiceAPI.Entities
 
             Products = new List<InvoiceProduct>();
         }
+        [BsonId] // Maps this property to MongoDB's `_id` field
+        [BsonRepresentation(BsonType.ObjectId)] //
+        public string Id { get; set; }
+
         public string InvoiceNumber { get; set; }
 
         public DateTime InvoiceDate { get; set; }

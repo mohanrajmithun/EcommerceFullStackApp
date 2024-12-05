@@ -1,5 +1,6 @@
 ﻿using SalesAPILibrary.Shared_Entities;
 using SalesAPILibrary.Shared_Enums;
+using SalesOrderInvoiceAPI.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace SalesAPILibrary.Interfaces
         Task<SaleOrderDTO> UpdateOrderStatusAsync(string invoiceNumber, OrderStatus orderStatus);
 
         Task<SaleOrder> CreateSaleOrder(SaleOrderDTO saleOrder, string bearertoken);
+
 
     }
 }

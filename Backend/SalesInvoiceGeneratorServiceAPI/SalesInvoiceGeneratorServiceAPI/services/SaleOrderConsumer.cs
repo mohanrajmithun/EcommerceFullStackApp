@@ -7,10 +7,13 @@ using SalesOrderInvoiceAPI.Entities;
 using SalesInvoiceGeneratorServiceAPI.Entities;
 using System.Text;
 using System.Text.Json;
-using InvoiceProduct = SalesInvoiceGeneratorServiceAPI.Entities.InvoiceProduct;
-using Invoice = SalesInvoiceGeneratorServiceAPI.Entities.Invoice;
+using InvoiceProduct = SalesAPILibrary.Shared_Entities.InvoiceProduct;
 using SalesInvoiceGeneratorServiceAPI.ServiceClients;
 using ISaleOrderDataServiceClient = SalesInvoiceGeneratorServiceAPI.Interfaces.ISaleOrderDataServiceClient;
+using System.Diagnostics;
+using OpenTelemetry.Trace;
+using SalesAPILibrary.Shared_Enums;
+using Invoice = SalesAPILibrary.Shared_Entities.Invoice;
 
 namespace SalesInvoiceGeneratorServiceAPI.services
 {
@@ -23,6 +26,8 @@ namespace SalesInvoiceGeneratorServiceAPI.services
         //private readonly IInvoicePdfGeneratorService pdfGenerator;
         //private readonly ISaleOrderDataService saleOrderDataService;
         private readonly IServiceProvider serviceProvider; // Inject the service provider
+        private static readonly ActivitySource activitySource = new("SalesInvoiceGeneratorServiceAPI");
+
 
 
 
@@ -56,6 +61,18 @@ namespace SalesInvoiceGeneratorServiceAPI.services
             {
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
+
+                using var activity = activitySource.StartActivity("RabbitMQ Consume", ActivityKind.Consumer);
+                if (activity != null)
+                {
+                    activity.SetTag("messaging.system", "rabbitmq");
+                    activity.SetTag("messaging.destination_kind", "queue");
+                    activity.SetTag("messaging.rabbitmq.queue", QueueName);
+                    activity.SetTag("messaging.message_payload_size_bytes", body.Length);
+                    activity.SetTag("message.body", message);
+                }
+
+
                 ProcessMessage(message);
             };
             _channel.BasicConsume(queue: QueueName, autoAck: true, consumer: consumer);
@@ -63,14 +80,23 @@ namespace SalesInvoiceGeneratorServiceAPI.services
 
         private void ProcessMessage(string message)
         {
+            using var activity = activitySource.StartActivity("Process Sale Order");
             var processedOrder = JsonSerializer.Deserialize<ProcessedOrder>(message);
+            activity?.SetTag("order.id", processedOrder?.InvoiceNumber);
+
             DequeSaleOrder(processedOrder);
             GenerateInvoiceSaleOrder(processedOrder);
         }
 
         private async void DequeSaleOrder(ProcessedOrder order)
         {
-
+            using var activity = activitySource.StartActivity("Deque Sale Order");
+            if (activity != null)
+            {
+                activity.SetTag("order.id", order.InvoiceNumber);
+                activity.SetTag("messaging.system", "rabbitmq");
+                activity.SetTag("messaging.operation", "receive");
+            }
             processedOrders.Add(order);
         }
 
@@ -83,53 +109,81 @@ namespace SalesInvoiceGeneratorServiceAPI.services
 
         private async void GenerateInvoiceSaleOrder(ProcessedOrder order)
         {
+            using var activity = activitySource.StartActivity("Generate Invoice");
+            if (activity != null)
+            {
+                activity.SetTag("order.id", order.InvoiceNumber);
+                activity.SetTag("messaging.system", "rabbitmq");
+                activity.SetTag("messaging.operation", "process");
+            }
+
             using (var scope = serviceProvider.CreateScope())
 
             {
                 var saleOrderDataService = scope.ServiceProvider.GetRequiredService<ISaleOrderDataServiceClient>();
                 var CustomerRepository = scope.ServiceProvider.GetRequiredService<ICustomerDataService>();
                 var ProductRepository = scope.ServiceProvider.GetRequiredService<IProductDataAPIService>();
+                var pdfGeneratorService = scope.ServiceProvider.GetRequiredService<IInvoicePdfGeneratorService>();
+                var InvoiceService = scope.ServiceProvider.GetRequiredService<IInvoiceServiceClient>();
+
                 List<InvoiceProduct> invoiceproducts = new List<InvoiceProduct>();
 
 
                 SaleOrderDTO saleOrderDTO = await saleOrderDataService.GetSaleOrderbyInvoiceNumber(order.InvoiceNumber);
                 Customer customer = await CustomerRepository.GetCustomerById(order.CustomerId);
 
-                foreach (var ProcessedProduct in order.Products)
+                if (saleOrderDTO.Status == OrderStatus.Cancelled || saleOrderDTO.Status == OrderStatus.Shipped || saleOrderDTO.Status == OrderStatus.Delivered)
                 {
-                    Product product = await ProductRepository.GetProductbyID(ProcessedProduct.ProductId);
-                    InvoiceProduct invoiceProduct = new InvoiceProduct
+                    // Send status update email without generating an invoice PDF
+
+                    string status = saleOrderDTO.Status.ToString(); 
+
+                    await pdfGeneratorService.SendOrderStatusUpdateEmail(customer.Email, status , order.InvoiceNumber);
+                }
+                else
+                {
+
+                    foreach (var ProcessedProduct in order.Products)
                     {
-                        ProductName = product.ProductName,
-                        productColor = product.productColor,
-                        productSize = product.productSize,
-                        Price = product.Price ?? 0m,
-                        Quantity = ProcessedProduct.Quantity
+                        Product product = await ProductRepository.GetProductbyID(ProcessedProduct.ProductId);
+                        InvoiceProduct invoiceProduct = new InvoiceProduct
+                        {
+                            ProductName = product.ProductName,
+                            productColor = product.productColor,
+                            productSize = product.productSize,
+                            Price = product.Price ?? 0m,
+                            Quantity = ProcessedProduct.Quantity
+
+                        };
+                        invoiceproducts.Add(invoiceProduct);
+
+
+                    }
+
+                    Invoice invoice = new Invoice
+                    {
+                        InvoiceNumber = saleOrderDTO.InvoiceNumber,
+                        CustomerId = customer.CustomerId,
+                        CustomerName = customer.CustomerName,
+                        CustomerEmail = customer.Email,
+                        NetTotal = saleOrderDTO.NetTotal,
+                        ProductIDs = saleOrderDTO.ProductIDs,
+                        Tax = saleOrderDTO.Tax ?? 0m,
+                        GrandTotal = saleOrderDTO.NetTotal,
+                        DeliveryAddress = saleOrderDTO.DeliveryAddress,
+                        Products = invoiceproducts
+
 
                     };
-                    invoiceproducts.Add(invoiceProduct);
+                    InvoiceService.CreateInvoiceAsync(invoice);
+                    pdfGeneratorService.GenerateInvoicePdf(invoice);
 
 
                 }
-
-                Invoice invoice = new Invoice
-                {
-                    InvoiceNumber = saleOrderDTO.InvoiceNumber,
-                    CustomerName = customer.CustomerName,
-                    CustomerEmail = customer.Email,
-                    NetTotal = saleOrderDTO.NetTotal,
-                    ProductIDs = saleOrderDTO.ProductIDs,
-                    Tax = saleOrderDTO.Tax ?? 0m,
-                    GrandTotal = saleOrderDTO.NetTotal + saleOrderDTO.Tax ?? 0m,
-                    DeliveryAddress = saleOrderDTO.DeliveryAddress,
-                    Products = invoiceproducts
-
-
-                };
-                var pdfGeneratorService = scope.ServiceProvider.GetRequiredService<IInvoicePdfGeneratorService>();
-                pdfGeneratorService.GenerateInvoicePdf(invoice);
+                activity?.SetStatus(ActivityStatusCode.Ok);
 
             }
+
 
         }
 

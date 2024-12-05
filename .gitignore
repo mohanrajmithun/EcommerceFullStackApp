@@ -1,3 +1,6 @@
-.vs/
+**/.vs/
+**/bin/
+**/obj/
 /Datadog
 /Backend/InvoiceDataService/InvoiceDataService/wwwroot/invoices
+/Backend/SalesInvoiceGeneratorServiceAPI/SalesInvoiceGeneratorServiceAPI/Invoices

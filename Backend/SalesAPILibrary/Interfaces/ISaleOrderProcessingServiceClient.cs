@@ -10,5 +10,6 @@ namespace SalesAPILibrary.Interfaces
     public interface ISaleOrderProcessingServiceClient
     {
         Task<List<ProcessedOrder>> ProcessSaleOrdersAsync();
+        Task<List<ProcessedOrder>> ProcessShippedCancelledDeliveredOrders(string invoiceNumber);
     }
 }

@@ -31,5 +31,14 @@ namespace SaleOrderProcessingAPI.Controllers
 
 
         }
+
+        [HttpGet("ProcessShippedCancelledDeliveredOrders")]
+        public async Task<ActionResult<List<ProcessedOrder>>>  ProcessShippedCancelledDeliveredOrders(string invoiceNumber)
+        {
+            logger.LogInformation("processing sale orders...");
+
+            return await saleOrderProcessing.ProcessShippedCancelledDeliveredOrdersAsync(invoiceNumber);
+        }
+
     }
 }

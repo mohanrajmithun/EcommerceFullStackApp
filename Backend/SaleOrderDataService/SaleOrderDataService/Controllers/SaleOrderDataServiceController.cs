@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SaleOrderDataService.ServiceClients;
 using SalesAPILibrary.Interfaces;
 using SalesAPILibrary.Shared_Entities;
 using SalesAPILibrary.Shared_Enums;
+using SalesOrderInvoiceAPI.Entities;
 
 namespace SaleOrderDataService.Controllers
 {
@@ -11,10 +13,14 @@ namespace SaleOrderDataService.Controllers
     public class SaleOrderDataServiceController : Controller
     {
         private readonly ISaleOrderDataService SaleOrderDataService;
+        private readonly ISaleOrderProcessingServiceClient saleOrderProcessingServiceClient;
 
-        public SaleOrderDataServiceController(ISaleOrderDataService SaleOrderDataService)
+
+        public SaleOrderDataServiceController(ISaleOrderDataService SaleOrderDataService, ISaleOrderProcessingServiceClient saleOrderProcessingServiceClient)
         {
             this.SaleOrderDataService = SaleOrderDataService;
+            this.saleOrderProcessingServiceClient = saleOrderProcessingServiceClient;
+
         }
 
 
@@ -246,6 +252,10 @@ namespace SaleOrderDataService.Controllers
 
                 if (SaleOrderDTO != null)
                 {
+                    if (orderStatus == OrderStatus.Cancelled | orderStatus == OrderStatus.Shipped | orderStatus == OrderStatus.Delivered)
+                    {
+                        List<ProcessedOrder> processedOrders = await saleOrderProcessingServiceClient.ProcessShippedCancelledDeliveredOrders(invoiceNumber);
+                    }
                     return Ok(SaleOrderDTO);
 
                 }

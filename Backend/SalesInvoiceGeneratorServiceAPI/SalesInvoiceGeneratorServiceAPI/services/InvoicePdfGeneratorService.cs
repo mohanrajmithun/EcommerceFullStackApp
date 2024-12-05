@@ -4,11 +4,11 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using MailKit.Net.Smtp;
 using MimeKit;
-using SalesInvoiceGeneratorServiceAPI.Entities;
 using SalesInvoiceGeneratorServiceAPI.Interfaces;
 using System.Net.Mail;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using SalesAPILibrary.Shared_Entities;
 
 namespace SalesInvoiceGeneratorServiceAPI.services
 {
@@ -107,5 +107,21 @@ namespace SalesInvoiceGeneratorServiceAPI.services
             var response = await client.SendEmailAsync(message);
             Console.WriteLine($"Invoice sent to {invoice.CustomerEmail} with response status: {response.StatusCode}");
         }
+
+        public async Task SendOrderStatusUpdateEmail(string customerEmail, string orderStatus, string invoiceNumber)
+        {
+            var apiKey = configuration["SendGrid:ApiKey"];
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("mohanmithun@proton.me", "Shopping Pods");
+            var to = new EmailAddress(customerEmail);
+            var subject = $"Order Status Update: {invoiceNumber}";
+            var plainTextContent = $"Dear Customer,\n\nYour order with Invoice Number: {invoiceNumber} has been {orderStatus}.\n\nBest regards,\nYour Sales Team";
+            var htmlContent = plainTextContent.Replace("\n", "<br>");
+
+            var message = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(message);
+            Console.WriteLine($"Status update email sent to {customerEmail} with response status: {response.StatusCode}");
+        }
+
     }
 }

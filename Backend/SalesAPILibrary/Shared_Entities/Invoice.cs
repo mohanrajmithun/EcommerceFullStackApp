@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using SalesAPILibrary.Shared_Enums;
+using System.Text.Json.Serialization;
 
 namespace SalesAPILibrary.Shared_Entities
 {
@@ -11,6 +14,14 @@ namespace SalesAPILibrary.Shared_Entities
 
             Products = new List<InvoiceProduct>();
         }
+
+        [BsonId] // Maps this property to MongoDB's `_id` field
+        [BsonRepresentation(BsonType.ObjectId)] //
+        [JsonIgnore]
+        [ValidateNever]
+
+        public string Id { get; set; }
+
         public string InvoiceNumber { get; set; }
 
         public DateTime InvoiceDate { get; set; }
@@ -21,9 +32,13 @@ namespace SalesAPILibrary.Shared_Entities
 
         public decimal Tax { get; set; }
 
-        public List<int> ProductIDs { get; set; }
+        public List<int>? ProductIDs { get; set; }
+
+        public int CustomerId { get; set; }
 
         public string CustomerName { get; set; }
+        public string CustomerEmail { get; set; }
+
 
         public List<InvoiceProduct> Products { get; set; }
 

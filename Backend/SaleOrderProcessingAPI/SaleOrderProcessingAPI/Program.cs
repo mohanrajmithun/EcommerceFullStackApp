@@ -7,6 +7,8 @@ using SaleOrderProcessingAPI.Services;
 using SalesAPILibrary.Interfaces;
 using SalesAPILibrary.Shared_Entities;
 using System;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +42,23 @@ builder.Services.AddHttpClient<ISaleOrderDataServiceClient, SaleOrderDataService
 
 builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
+
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource.AddService("SaleOrderProcessingAPI"))
+    .WithTracing(tracing =>
+    {
+    tracing
+        .AddAspNetCoreInstrumentation()
+        .AddHttpClientInstrumentation()
+        .AddSqlClientInstrumentation(o => o.SetDbStatementForText = true)
+        .AddOtlpExporter(opt =>
+        {
+            opt.Endpoint = new Uri("https://api.honeycomb.io/v1/traces");
+            opt.Headers = "x-honeycomb-team=SU5aijCxMxzVhbFoL02BeD"; // replace with your Honeycomb API key
+        });
+
+    });
+
 
 var app = builder.Build();
 

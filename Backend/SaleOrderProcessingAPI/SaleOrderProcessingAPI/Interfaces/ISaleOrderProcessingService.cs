@@ -10,6 +10,7 @@ namespace SaleOrderProcessingAPI.Interfaces
 
         Task<List<ProcessedOrder>> ProcessSaleOrderAsync();
         ProcessedOrder CreateProcessedOrder(SaleOrderDTO order);
+        Task<List<ProcessedOrder>> ProcessShippedCancelledDeliveredOrdersAsync(string invoiceNumber);
 
         Task<bool> ValidateOrder(SaleOrderDTO order);
 

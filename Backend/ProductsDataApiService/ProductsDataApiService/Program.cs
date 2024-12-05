@@ -11,7 +11,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ProductsDataApiService.interfaces;
 using ProductsDataApiService.ServiceClients;
-using Elastic.Apm.AspNetCore;
+
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
+using OpenTelemetry;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -169,17 +173,47 @@ builder.Services.AddHttpClient<ISaleOrderProcessingServiceClient, SaleOrderProce
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowOrigin",
-        builder => builder.AllowAnyOrigin() // Allow all origins
-                          .AllowAnyMethod() // Allow any HTTP method
-                          .AllowAnyHeader()); // Allow any header
+    options.AddPolicy("AllowOrigin", builder =>
+    {
+        builder.WithOrigins("http://localhost:4200") // Adjust to match your frontend origin
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials();
+    });
 });
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
 
+
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource.AddService("ProductsAPI"))
+    .WithTracing(tracing =>
+    {
+        tracing
+            .AddAspNetCoreInstrumentation()
+            .AddHttpClientInstrumentation()
+            .AddSqlClientInstrumentation(o => o.SetDbStatementForText = true)
+            .AddOtlpExporter(opt =>
+             {
+                 opt.Endpoint = new Uri("https://api.honeycomb.io/v1/traces");
+                 opt.Headers = "x-honeycomb-team=SU5aijCxMxzVhbFoL02BeD"; // replace with your Honeycomb API key
+             });
+
+        // Configure Jaeger Exporter
+        //tracing.AddJaegerExporter(jaegerOptions =>
+        //{
+        //    jaegerOptions.AgentHost = "localhost"; // Replace with your Jaeger instance's host if different
+        //    jaegerOptions.AgentPort = 6831; // Default Jaeger agent port for UDP
+        //});
+
+
+    });
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -200,7 +234,6 @@ if (app.Environment.IsDevelopment())
 
 //    await next.Invoke();
 //});
-app.UseElasticApm(builder.Configuration);
 app.UseRouting();
 
 app.UseHttpsRedirection();

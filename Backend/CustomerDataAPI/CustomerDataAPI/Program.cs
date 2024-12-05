@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using SalesAPILibrary.Interfaces;
 using System;
 using System.Text;
@@ -27,12 +29,14 @@ builder.Services.AddControllers().AddJsonOptions(opt =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowOrigin",
-        builder => builder.AllowAnyOrigin() // Allow all origins
-                          .AllowAnyMethod() // Allow any HTTP method
-                          .AllowAnyHeader()); // Allow any header
+    options.AddPolicy("AllowOrigin", builder =>
+    {
+        builder.WithOrigins("http://localhost:4200") // Adjust to match your frontend origin
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials();
+    });
 });
-
 
 //var configBuilder = new ConfigurationBuilder()
 //        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true) // Load appsettings.json
@@ -150,6 +154,30 @@ builder.Services.AddLogging(loggingBuilder =>
 
 builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
+
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource.AddService("CustomerDataAPI"))
+    .WithTracing(tracing =>
+    {
+        tracing
+            .AddAspNetCoreInstrumentation()
+            .AddHttpClientInstrumentation()
+            .AddSqlClientInstrumentation(o => o.SetDbStatementForText = true)
+            .AddOtlpExporter(opt =>
+            {
+                opt.Endpoint = new Uri("https://api.honeycomb.io/v1/traces");
+                opt.Headers = "x-honeycomb-team=SU5aijCxMxzVhbFoL02BeD"; // replace with your Honeycomb API key
+            });
+
+        // Configure Jaeger Exporter
+        //tracing.AddJaegerExporter(jaegerOptions =>
+        //{
+        //    jaegerOptions.AgentHost = "localhost"; // Replace with your Jaeger instance's host if different
+        //    jaegerOptions.AgentPort = 6831; // Default Jaeger agent port for UDP
+        //});
+
+
+    });
 
 var app = builder.Build();
 
