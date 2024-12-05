@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "O9QGtIW+YVRr98ZrQPgIs9MG4MeqHMtbJ78ptA51epU=",
+  "Source": "InvoiceDataService",
+  "BasePath": "_content/InvoiceDataService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "InvoiceDataService\\wwwroot",
+      "Source": "InvoiceDataService",
+      "ContentRoot": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\InvoiceDataService\\InvoiceDataService\\wwwroot\\",
+      "BasePath": "_content/InvoiceDataService",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\InvoiceDataService\\InvoiceDataService\\wwwroot\\invoices\\15730255.pdf",
+      "SourceId": "InvoiceDataService",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\InvoiceDataService\\InvoiceDataService\\wwwroot\\",
+      "BasePath": "_content/InvoiceDataService",
+      "RelativePath": "invoices/15730255.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\invoices\\15730255.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\InvoiceDataService\\InvoiceDataService\\wwwroot\\invoices\\60280316.pdf",
+      "SourceId": "InvoiceDataService",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\InvoiceDataService\\InvoiceDataService\\wwwroot\\",
+      "BasePath": "_content/InvoiceDataService",
+      "RelativePath": "invoices/60280316.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\invoices\\60280316.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\InvoiceDataService\\InvoiceDataService\\wwwroot\\invoices\\61533909.pdf",
+      "SourceId": "InvoiceDataService",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mohan\\source\\repos\\EcommerceFullStackApp\\Backend\\InvoiceDataService\\InvoiceDataService\\wwwroot\\",
+      "BasePath": "_content/InvoiceDataService",
+      "RelativePath": "invoices/61533909.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\invoices\\61533909.pdf"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+[
+  {
+    "ContainingType": "InvoiceMongoDBService.Controllers.InvoicesController",
+    "Method": "CreateInvoice",
+    "RelativePath": "api/invoices",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoice",
+        "Type": "SalesAPILibrary.Shared_Entities.Invoice",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "InvoiceMongoDBService.Controllers.InvoicesController",
+    "Method": "GetInvoice",
+    "RelativePath": "api/invoices/{InvoiceNumber}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "InvoiceNumber",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "InvoiceMongoDBService.Controllers.InvoicesController",
+    "Method": "GetInvoiceAsPDF",
+    "RelativePath": "api/invoices/GetInvoiceAsPDF",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoiceNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "InvoiceMongoDBService.Controllers.InvoicesController",
+    "Method": "GetInvoicesForCustomer",
+    "RelativePath": "api/invoices/InvoicesByCustomer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[SalesAPILibrary.Shared_Entities.Invoice, SalesAPILibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
