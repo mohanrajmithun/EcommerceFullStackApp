@@ -5,11 +5,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using CustomerDataAPI.Enums;
 using SerilogTimings;
-using Serilog.AspNetCore;
 using SalesAPILibrary.Interfaces;
 using SalesAPILibrary.Shared_Entities;
 using ApplicationUser = CustomerDataAPI.Entities.ApplicationUser;
-
 
 namespace CustomerDataAPI.Controllers
 {
@@ -17,145 +15,160 @@ namespace CustomerDataAPI.Controllers
     [Route("/api/[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly TokenService tokenService;
-        private readonly AppDbContext context;
-        private readonly ILogger<UsersController> logger;
-        private readonly ICustomerDataService CustomerDataService;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly TokenService _tokenService;
+        private readonly AppDbContext _context;
+        private readonly ILogger<UsersController> _logger;
+        private readonly ICustomerDataService _customerDataService;
 
-
-        public UsersController(UserManager<ApplicationUser> userManager, TokenService tokenService, AppDbContext context, ILogger<UsersController> logger, ICustomerDataService CustomerDataService)
+        public UsersController(
+            UserManager<ApplicationUser> userManager,
+            TokenService tokenService,
+            AppDbContext context,
+            ILogger<UsersController> logger,
+            ICustomerDataService customerDataService)
         {
-            this.userManager = userManager;
-            this.tokenService = tokenService;
-            this.context = context;
-            this.logger = logger;
-            this.CustomerDataService = CustomerDataService;
-
-
-
+            _userManager = userManager;
+            _tokenService = tokenService;
+            _context = context;
+            _logger = logger;
+            _customerDataService = customerDataService;
         }
+
         [HttpPost("Register")]
         public async Task<ActionResult> Register(RegistrationRequest request)
         {
+            _logger.LogInformation("Registration process started for email: {Email}", request.Email);
+
             if (!ModelState.IsValid)
             {
+                _logger.LogWarning("Invalid model state during registration for email: {Email}", request.Email);
                 return BadRequest(ModelState);
             }
 
-        
-
-                ApplicationUser new_user = new ApplicationUser()
-                {
-                    UserName = request.Email,
-                    Email = request.Email,
-                    Role = Role.User
-                };
-            
-
+            ApplicationUser newUser = new ApplicationUser()
+            {
+                UserName = request.Email,
+                Email = request.Email,
+                Role = Role.User
+            };
 
             using (Operation.Time("Creating the user in Database"))
             {
-                var result = await userManager.CreateAsync(new_user, request.password!);
+                try
+                {
+                    var result = await _userManager.CreateAsync(newUser, request.password!);
 
-                if (result.Succeeded)
-                { 
-
-                    CustomerDetails customerDetails = new CustomerDetails();
-                    customerDetails.Email = request.Email;
-                    customerDetails.Address = request.Address;
-                    customerDetails.CustomerName = request.FullName;
-                    customerDetails.PhoneNo = request.Phone_Number;
-                    customerDetails.IsActive = true;
-
-                    CustomerDetails customer = await CustomerDataService.AddCustomer(customerDetails);
-
-                    new_user.CustomerId = customer.CustomerId;
-                    new_user.PhoneNumber = request.Phone_Number.ToString();
-
-                    var updateUserResult = await userManager.UpdateAsync(new_user);
-                    if (!updateUserResult.Succeeded)
+                    if (result.Succeeded)
                     {
-                        return BadRequest("Failed to update user with CustomerId.");
+                        _logger.LogInformation("User created successfully with email: {Email}", request.Email);
+
+                        CustomerDetails customerDetails = new CustomerDetails
+                        {
+                            Email = request.Email,
+                            Address = request.Address,
+                            CustomerName = request.FullName,
+                            PhoneNo = request.Phone_Number,
+                            IsActive = true
+                        };
+
+                        var customer = await _customerDataService.AddCustomer(customerDetails);
+
+                        newUser.CustomerId = customer.CustomerId;
+                        newUser.PhoneNumber = request.Phone_Number.ToString();
+
+                        var updateUserResult = await _userManager.UpdateAsync(newUser);
+
+                        if (!updateUserResult.Succeeded)
+                        {
+                            _logger.LogWarning("Failed to update user with CustomerId for email: {Email}", request.Email);
+                            return BadRequest("Failed to update user with CustomerId.");
+                        }
+
+                        _logger.LogInformation("User updated with CustomerId: {CustomerId} for email: {Email}", customer.CustomerId, request.Email);
+                        request.password = ""; // Clear password for safety
+                        return CreatedAtAction(nameof(Register), new { email = request.Email, role = request.Role }, request);
                     }
 
-                    request.password = "";
-                    return CreatedAtAction(nameof(Register), new { email = request.Email, role = request.Role }, request);
+                    foreach (var error in result.Errors)
+                    {
+                        _logger.LogWarning("Error during user creation: {Error}", error.Description);
+                        ModelState.AddModelError(error.Code, error.Description);
+                    }
                 }
-
-                foreach (var error in result.Errors)
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError(error.Code, error.Description);
+                    _logger.LogError(ex, "An error occurred while registering user with email: {Email}", request.Email);
+                    throw;
                 }
-
             }
 
-
-
             return BadRequest(ModelState);
-
-
-
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<AuthResponse>> Authenticate(AuthRequest request)
         {
+            _logger.LogInformation("Login process started for email: {Email}", request.Email);
+
             if (!ModelState.IsValid)
             {
+                _logger.LogWarning("Invalid model state during login for email: {Email}", request.Email);
                 return BadRequest(ModelState);
             }
 
-            var user = await userManager.FindByEmailAsync(request.Email!);
-            if (user == null)
+            try
             {
-                return BadRequest(new { message = "Bad Credentials" });
-            }
-
-
-            var valid_password = await userManager.CheckPasswordAsync(user, request.Password!);
-            if (!valid_password)
-            {
-                return BadRequest(new { message = "Bad Credentials" });
-            }
-
-            var user_in_db = context.Users.FirstOrDefault(u => u.Email == request.Email);
-
-            if (user_in_db is null)
-            {
-                return Unauthorized();
-            }
-
-            var access_token = tokenService.CreateToken(user_in_db);
-            await context.SaveChangesAsync();
-
-            if (user_in_db.CustomerId == null)
-            {
-                return Ok(new AuthResponse()
+                var user = await _userManager.FindByEmailAsync(request.Email!);
+                if (user == null)
                 {
-                    Email = user_in_db.Email,
-                    Token = access_token,
-                    Username = user_in_db.UserName,
+                    _logger.LogWarning("Bad credentials for email: {Email}", request.Email);
+                    return BadRequest(new { message = "Bad Credentials" });
+                }
 
+                var validPassword = await _userManager.CheckPasswordAsync(user, request.Password!);
+                if (!validPassword)
+                {
+                    _logger.LogWarning("Invalid password for email: {Email}", request.Email);
+                    return BadRequest(new { message = "Bad Credentials" });
+                }
+
+                var userInDb = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+                if (userInDb is null)
+                {
+                    _logger.LogWarning("Unauthorized access attempt for email: {Email}", request.Email);
+                    return Unauthorized();
+                }
+
+                var accessToken = _tokenService.CreateToken(userInDb);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation("User authenticated successfully for email: {Email}", request.Email);
+
+                if (userInDb.CustomerId == null)
+                {
+                    return Ok(new AuthResponse
+                    {
+                        Email = userInDb.Email,
+                        Token = accessToken,
+                        Username = userInDb.UserName,
+                    });
+                }
+
+                return Ok(new AuthResponse
+                {
+                    Email = userInDb.Email,
+                    Token = accessToken,
+                    Username = userInDb.UserName,
+                    CustomerId = (int)userInDb.CustomerId,
+                    Role = userInDb.Role.ToString()
                 });
-
             }
-
-            return Ok(new AuthResponse()
+            catch (Exception ex)
             {
-                Email = user_in_db.Email,
-                Token = access_token,
-                Username = user_in_db.UserName,
-                CustomerId = (int)user_in_db.CustomerId,
-                Role = user_in_db.Role.ToString()
-
-            });
+                _logger.LogError(ex, "An error occurred during login for email: {Email}", request.Email);
+                return StatusCode(500, "An error occurred while processing your request");
+            }
         }
-
-
-
-
-
     }
 }
-

@@ -21,6 +21,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
     <PackageReference Include="Serilog" Version="4.0.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
     <PackageReference Include="SerilogTimings" Version="3.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
@@ -44,10 +47,12 @@
   
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\ProductsDataApiService\ProductsDataApiService\ProductsDataApiService.csproj" />
-    <ProjectReference Include="..\..\SalesAPILibrary\SalesAPILibrary.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="SalesAPILibrary">
+			<HintPath>bin/Debug/net6.0/SalesAPILibrary.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
 
 
 	<!--<ItemGroup>-->

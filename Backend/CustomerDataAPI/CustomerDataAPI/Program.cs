@@ -12,16 +12,31 @@ using SalesAPILibrary.Interfaces;
 using System;
 using System.Text;
 using System.Text.Json.Serialization;
+using Serilog;
+using Serilog.Context;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .Enrich.WithMachineName()              // Adds the machine name
+    .Enrich.WithThreadId()
+    .WriteTo.Console()
+    .WriteTo.Seq("http://seq:5341") // Replace with your Seq endpoint
+    .MinimumLevel.Information()            // Adjust log level
+    .CreateLogger();
 
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog();
+
+
+ 
+// Add services to the container
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 builder.Services.AddControllers().AddJsonOptions(opt =>
 {
     opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -31,28 +46,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowOrigin", builder =>
     {
-        builder.WithOrigins("http://localhost:4200") // Adjust to match your frontend origin
+        builder.WithOrigins("http://localhost:4200")
                .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials();
     });
 });
 
-//var configBuilder = new ConfigurationBuilder()
-//        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true) // Load appsettings.json
-//        .AddEnvironmentVariables();
-//builder.Services.AddSingleton(configBuilder);
-
-
-var validIssuer = builder.Configuration.GetValue<string>("JwtTokenSettings:ValidIssuer");
-var validAudience = builder.Configuration.GetValue<string>("JwtTokenSettings:ValidAudience");
-var symmetricSecurityKey = builder.Configuration.GetValue<string>("JwtTokenSettings:SymmetricSecurityKey");
-
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    options.LoginPath = "/users/login";  // Point to your custom login path
-});
-
+// Swagger Configuration
 builder.Services.AddSwaggerGen(option =>
 {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "Ecommerce API", Version = "v1" });
@@ -66,20 +67,25 @@ builder.Services.AddSwaggerGen(option =>
         Scheme = "Bearer"
     });
     option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
         {
+            new OpenApiSecurityScheme
             {
-                new OpenApiSecurityScheme
+                Reference = new OpenApiReference
                 {
-                    Reference = new OpenApiReference
-                    {
-                        Type=ReferenceType.SecurityScheme,
-                        Id="Bearer"
-                    }
-                },
-                new string[]{}
-            }
-        });
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
 });
+
+// JWT Configuration
+var validIssuer = builder.Configuration.GetValue<string>("JwtTokenSettings:ValidIssuer");
+var validAudience = builder.Configuration.GetValue<string>("JwtTokenSettings:ValidAudience");
+var symmetricSecurityKey = builder.Configuration.GetValue<string>("JwtTokenSettings:SymmetricSecurityKey");
 
 builder.Services.AddAuthentication(options =>
 {
@@ -87,74 +93,67 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-        .AddJwtBearer(options =>
-        {
-            //options.Authority = "validIssuer";
-            //options.RequireHttpsMetadata = false;
-            options.IncludeErrorDetails = true;
-            options.TokenValidationParameters = new TokenValidationParameters()
-            {
-                ClockSkew = TimeSpan.Zero,
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = validIssuer,
-                ValidAudience = validAudience,
-                IssuerSigningKey = new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(symmetricSecurityKey)
-                ),
-            };
-            options.Events = new JwtBearerEvents
-            {
-                OnAuthenticationFailed = context =>
-                {
-                    Console.WriteLine($"Authentication failed: {context.Exception.Message}");
-                    return Task.CompletedTask;
-                },
-                OnTokenValidated = context =>
-                {
-                    Console.WriteLine("Token validated successfully.");
-                    return Task.CompletedTask;
-                },
-                OnMessageReceived = context =>
-                {
-                    Console.WriteLine("JWT token received.");
-                    return Task.CompletedTask;
-                },
-                OnChallenge = context =>
-                {
-                    Console.WriteLine("JWT validation challenge.");
-                    return Task.CompletedTask;
-                }
-            };
-        });
-builder.Services
-       .AddIdentity<ApplicationUser, IdentityRole>(options =>
-       {
-           options.SignIn.RequireConfirmedAccount = false;
-           options.User.RequireUniqueEmail = true;
-           options.Password.RequireDigit = false;
-           options.Password.RequiredLength = 6;
-           options.Password.RequireNonAlphanumeric = false;
-           options.Password.RequireUppercase = false;
-       })
-       .AddRoles<IdentityRole>()
-       .AddEntityFrameworkStores<AppDbContext>();
-builder.Services.AddScoped<ICustomerDataService, CustomerDataService>();
-builder.Services.AddScoped<TokenService, TokenService>();
-builder.Logging.SetMinimumLevel(LogLevel.Debug);
-
-builder.Services.AddLogging(loggingBuilder =>
+.AddJwtBearer(options =>
 {
-    loggingBuilder.AddConsole();
-    loggingBuilder.AddDebug();
+    options.IncludeErrorDetails = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ClockSkew = TimeSpan.Zero,
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = validIssuer,
+        ValidAudience = validAudience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(symmetricSecurityKey))
+    };
+    options.Events = new JwtBearerEvents
+    {
+        OnAuthenticationFailed = context =>
+        {
+            Console.WriteLine($"Authentication failed: {context.Exception.Message}");
+            return Task.CompletedTask;
+        },
+        OnTokenValidated = context =>
+        {
+            Console.WriteLine("Token validated successfully.");
+            return Task.CompletedTask;
+        },
+        OnMessageReceived = context =>
+        {
+            Console.WriteLine("JWT token received.");
+            return Task.CompletedTask;
+        },
+        OnChallenge = context =>
+        {
+            Console.WriteLine("JWT validation challenge.");
+            return Task.CompletedTask;
+        }
+    };
 });
 
+// Identity Configuration
+builder.Services
+    .AddIdentity<ApplicationUser, IdentityRole>(options =>
+    {
+        options.SignIn.RequireConfirmedAccount = false;
+        options.User.RequireUniqueEmail = true;
+        options.Password.RequireDigit = false;
+        options.Password.RequiredLength = 6;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+    })
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.AddScoped<ICustomerDataService, CustomerDataService>();
+builder.Services.AddScoped<TokenService, TokenService>();
+
+// Database Configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
 
+// OpenTelemetry Configuration
 builder.Services.AddOpenTelemetry()
     .ConfigureResource(resource => resource.AddService("CustomerDataAPI"))
     .WithTracing(tracing =>
@@ -166,32 +165,28 @@ builder.Services.AddOpenTelemetry()
             .AddOtlpExporter(opt =>
             {
                 opt.Endpoint = new Uri("https://api.honeycomb.io/v1/traces");
-                opt.Headers = "x-honeycomb-team=SU5aijCxMxzVhbFoL02BeD"; // replace with your Honeycomb API key
+                opt.Headers = "x-honeycomb-team=SU5aijCxMxzVhbFoL02BeD"; // Replace with your Honeycomb API key
             });
-
-        // Configure Jaeger Exporter
-        //tracing.AddJaegerExporter(jaegerOptions =>
-        //{
-        //    jaegerOptions.AgentHost = "localhost"; // Replace with your Jaeger instance's host if different
-        //    jaegerOptions.AgentPort = 6831; // Default Jaeger agent port for UDP
-        //});
-
-
     });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// Middleware for Logging Requests
 app.Use(async (context, next) =>
 {
     var logger = app.Services.GetRequiredService<ILogger<Program>>();
     logger.LogInformation($"Incoming request: {context.Request.Method} {context.Request.Path}");
+    var traceId = context.Request.Headers["trace-id"].FirstOrDefault() ?? Guid.NewGuid().ToString();
+    LogContext.PushProperty("TraceId", traceId);
+
+    context.Response.Headers["trace-id"] = traceId;
 
     if (context.Request.Headers.ContainsKey("Authorization"))
     {
@@ -201,21 +196,42 @@ app.Use(async (context, next) =>
 
     await next.Invoke();
 });
+
+// Add Serilog request logging
+app.UseSerilogRequestLogging(options =>
+{
+    options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+    {
+        diagnosticContext.Set("RequestHost", httpContext.Request.Host.Value);
+        diagnosticContext.Set("RequestScheme", httpContext.Request.Scheme);
+        diagnosticContext.Set("RequestPath", httpContext.Request.Path);
+        diagnosticContext.Set("QueryString", httpContext.Request.QueryString.Value);
+        diagnosticContext.Set("UserAgent", httpContext.Request.Headers["User-Agent"].ToString());
+    };
+});
+
 app.UseRouting();
-
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
-
 app.UseAuthorization();
-
-app.UseCors("AllowOrigin"); // Use the defined CORS policy
-
-
-
+app.UseCors("AllowOrigin");
 
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
+
+
+
+app.Lifetime.ApplicationStarted.Register(() =>
+{
+    Log.Information("CustomerData Service started at {Time}", DateTime.UtcNow);
+});
+
+// Log when the service is stopping
+app.Lifetime.ApplicationStopping.Register(() =>
+{
+    Log.Information("CustomerData Service is stopping at {Time}", DateTime.UtcNow);
+});
+
 app.Run();
