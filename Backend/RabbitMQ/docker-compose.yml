@@ -5,10 +5,12 @@ services:
     image: rabbitmq:3-management
     container_name: rabbitmq
     environment:
+      - RABBITMQ_DEFAULT_USER=guest        # Set your custom username
+      - RABBITMQ_DEFAULT_PASS=guest        # Set your custom password
       - RABBITMQ_PLUGINS=opentelemetry
       - RABBITMQ_OTEL_TRACES_EXPORTER=otlp
       - RABBITMQ_OTEL_TRACES_EXPORTER_OTLP_ENDPOINT=https://api.honeycomb.io:443
-      - RABBITMQ_OTEL_TRACES_EXPORTER_OTLP_HEADERS=SU5aijCxMxzVhbFoL02BeD>
+      - RABBITMQ_OTEL_TRACES_EXPORTER_OTLP_HEADERS=SU5aijCxMxzVhbFoL02BeD
       - RABBITMQ_OTEL_TRACES_SAMPLER=always_on
     ports:
       - "5672:5672"   # RabbitMQ AMQP port
