@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    environment:
+      - SEQ_FIRSTRUN_ADMINPASSWORD=admin
+      - SEQ_API_KEY=vwvAAQAg3hlifaEwx73M
+      - ACCEPT_EULA=Y  # Correct syntax
+
+    ports:
+      - "5341:80"
+      - "5342:5342" # Ingestion port for API keys
+    volumes:
+      - seq_data:/data
+      - seq_logs:/logs
+    networks:
+      - seq_network
+
+volumes:
+  seq_data:
+    driver: local
+  seq_logs:
+    driver: local
+
+networks:
+  seq_network:
+    driver: bridge
