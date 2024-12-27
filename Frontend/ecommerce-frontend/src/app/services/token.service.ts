@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import {jwtDecode} from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -43,10 +45,14 @@ export class TokenService {
     return typeof window !== 'undefined' && !!window.localStorage;
   }
   // Save token
-  saveToken(token: string) {
-    localStorage.setItem(this.tokenKey, token);
-    this.isAuthenticated.next(true); // Notify about the authentication status
 
+  public saveToken(token: string) {
+    if (!this.isTokenExpired(token)) {
+      localStorage.setItem(this.tokenKey, token);
+      this.isAuthenticated.next(true);
+    } else {
+      this.logout();
+    }
   }
 
   login(token: string, role: string): void {
@@ -86,5 +92,20 @@ export class TokenService {
   clearToken(): void {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.roleKey); // Clear role as well
+  }
+
+  public getTokenExpiry(token: string): number {
+    try {
+      const decoded: any = jwtDecode(token);
+      return decoded.exp ? decoded.exp * 1000 : 0; // `exp` is in seconds
+    } catch (error) {
+      console.error('Failed to decode token:', error);
+      return 0;
+    }
+  }
+  
+  public isTokenExpired(token: string): boolean {
+    const expiryTime = this.getTokenExpiry(token);
+    return expiryTime < Date.now();
   }
 }

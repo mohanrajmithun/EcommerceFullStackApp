@@ -11,7 +11,7 @@ import { ProductCategory } from '../model/ProductCategory';
 })
 export class ProductDataApiService {
 
-  private apiUrl = 'https://localhost:7101/api/ProductDataAPI'; // Update this with your API base URL
+  private apiUrl = 'http://localhost:5003/api/ProductDataAPI'; // Update this with your API base URL
 
   constructor(private http: HttpClient) { }
 

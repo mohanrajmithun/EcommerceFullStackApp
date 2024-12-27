@@ -10,7 +10,7 @@ import { CustomerService } from './customer.service';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'https://localhost:7276/api/users'; // Adjust the URL to your backend
+  private baseUrl = 'http://localhost:5002/api/users'; // Adjust the URL to your backend
   DuplicateEmail = false;
   DuplicateUserName = false;
   BadCredentials = false;

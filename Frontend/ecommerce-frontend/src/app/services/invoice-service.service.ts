@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class InvoiceService {
-  private apiBaseUrl = 'https://localhost:7262/api/invoices'; // Update to match your API endpoint
+  private apiBaseUrl = 'http://localhost:5001/api/invoices'; // Update to match your API endpoint
 
   constructor(private http: HttpClient) {}
 

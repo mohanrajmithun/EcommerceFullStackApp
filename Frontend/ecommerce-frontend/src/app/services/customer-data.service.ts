@@ -11,7 +11,7 @@ import { Customer } from '../model/Customer.model';
   providedIn: 'root'
 })
 export class CustomerDataService {
-  private baseUrl = 'https://localhost:7276/api/CustomerData'; // Adjust the URL to your backend
+  private baseUrl = 'http://localhost:5002/api/CustomerData'; // Adjust the URL to your backend
   DuplicateEmail = false;
   DuplicateUserName = false;
   BadCredentials = false;

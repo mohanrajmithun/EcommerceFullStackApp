@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 })
 export class SaleOrderDataService {
 
-  private apiUrl = 'https://localhost:7083/api/SaleOrderDataService'; // Adjust to your actual API base URL
+  private apiUrl = 'http://localhost:5004/api/SaleOrderDataService'; // Adjust to your actual API base URL
 
   constructor(private http: HttpClient) {}
 

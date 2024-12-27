@@ -8,7 +8,7 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = 'https://localhost:7101/api/Cart'; // Base URL of Cart API
+  private apiUrl = 'http://localhost:5003/api/Cart'; // Base URL of Cart API
 
   constructor(private http: HttpClient) {}
 
