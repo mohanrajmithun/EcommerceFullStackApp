@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InvoiceDataService.Services;
+using Microsoft.AspNetCore.Mvc;
 using SalesAPILibrary.Interfaces;
 using SalesAPILibrary.Shared_Entities;
 
@@ -9,10 +10,14 @@ namespace InvoiceMongoDBService.Controllers
     public class InvoicesController : ControllerBase
     {
         private readonly IInvoiceService _invoiceService;
+        private readonly ILogger<InvoicesController> _logger;
 
-        public InvoicesController(IInvoiceService invoiceService)
+
+        public InvoicesController(IInvoiceService invoiceService, ILogger<InvoicesController> logger)
         {
             _invoiceService = invoiceService;
+            _logger = logger;
+
         }
 
         [HttpGet("{InvoiceNumber}")]
@@ -44,37 +49,45 @@ namespace InvoiceMongoDBService.Controllers
         [HttpGet("GetInvoiceAsPDF")]
         public async Task<IActionResult> GetInvoiceAsPDF(string invoiceNumber)
         {
+            _logger.LogInformation("Received request to fetch or generate PDF for InvoiceNumber: {InvoiceNumber}", invoiceNumber);
+
             try
             {
-                // Define the file path
                 string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "invoices");
                 string filePath = Path.Combine(directoryPath, $"{invoiceNumber}.pdf");
 
-                // Check if the file already exists
                 if (!System.IO.File.Exists(filePath))
                 {
-                    // Retrieve invoice details (mock or actual implementation)
-                    Invoice invoice = await _invoiceService.GetInvoiceByNumberAsync(invoiceNumber); // Replace with your logic
+                    _logger.LogInformation("PDF not found for InvoiceNumber: {InvoiceNumber}, generating new PDF.", invoiceNumber);
 
-                    // Ensure directory exists
+                    Invoice invoice = await _invoiceService.GetInvoiceByNumberAsync(invoiceNumber);
+
+                    if (invoice == null)
+                    {
+                        _logger.LogWarning("No invoice found for InvoiceNumber: {InvoiceNumber}", invoiceNumber);
+                        return NotFound($"Invoice with number {invoiceNumber} not found.");
+                    }
+
                     Directory.CreateDirectory(directoryPath);
-
-                    // Generate the PDF and save it to the file path
                     _invoiceService.GenerateInvoicePdf(invoice);
                 }
+                else
+                {
+                    _logger.LogInformation("PDF already exists for InvoiceNumber: {InvoiceNumber}", invoiceNumber);
+                }
 
-                // Return the physical file
                 var fileBytes = System.IO.File.ReadAllBytes(filePath);
                 string fileName = $"{invoiceNumber}.pdf";
 
+                _logger.LogInformation("Returning PDF file for InvoiceNumber: {InvoiceNumber}", invoiceNumber);
                 return File(fileBytes, "application/pdf", fileName);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error processing request for InvoiceNumber: {InvoiceNumber}", invoiceNumber);
                 return StatusCode(500, $"Error generating or retrieving PDF: {ex.Message}");
             }
         }
-
 
 
 
