@@ -9,27 +9,25 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /source
 
-## Copy and restore SalesAPILibrary
-COPY ["SalesAPILibrary/SalesAPILibrary.csproj", "SalesAPILibrary/"]
+# Copy and restore SalesAPILibrary
+COPY Backend/SalesAPILibrary/SalesAPILibrary.csproj SalesAPILibrary/
 RUN dotnet restore "SalesAPILibrary/SalesAPILibrary.csproj"
 
+
 # Copy and build SalesAPILibrary
-COPY  SalesAPILibrary/ SalesAPILibrary/
+COPY Backend/SalesAPILibrary/ SalesAPILibrary/
 WORKDIR "/source/SalesAPILibrary"
-RUN dotnet build "SalesAPILibrary.csproj" -c Release -o /app
+RUN dotnet build "SalesAPILibrary.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 
 WORKDIR "/source"
-
-COPY ./SalesInvoiceGeneratorServiceAPI/SalesInvoiceGeneratorServiceAPI/SalesInvoiceGeneratorServiceAPI.csproj SalesInvoiceGeneratorServiceAPI/
+COPY Backend/SalesInvoiceGeneratorServiceAPI/SalesInvoiceGeneratorServiceAPI/SalesInvoiceGeneratorServiceAPI.csproj SalesInvoiceGeneratorServiceAPI/
 RUN dotnet restore "./SalesInvoiceGeneratorServiceAPI/SalesInvoiceGeneratorServiceAPI.csproj"
 
 
-COPY ./SalesInvoiceGeneratorServiceAPI/SalesInvoiceGeneratorServiceAPI SalesInvoiceGeneratorServiceAPI/
+COPY Backend/SalesInvoiceGeneratorServiceAPI/SalesInvoiceGeneratorServiceAPI SalesInvoiceGeneratorServiceAPI/
 WORKDIR "/source/SalesInvoiceGeneratorServiceAPI"
 RUN dotnet build "./SalesInvoiceGeneratorServiceAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-WORKDIR "/source/SalesInvoiceGeneratorServiceAPI"
 
 
 FROM build AS publish

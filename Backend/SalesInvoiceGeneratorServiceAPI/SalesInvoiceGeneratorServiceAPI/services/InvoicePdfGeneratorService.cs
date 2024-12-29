@@ -15,113 +15,133 @@ namespace SalesInvoiceGeneratorServiceAPI.services
     public class InvoicePdfGeneratorService : IInvoicePdfGeneratorService
     {
         private readonly ILogger<InvoicePdfGeneratorService> logger;
-        private readonly IConfiguration configuration; // Add this line
+        private readonly IConfiguration configuration;
 
         public InvoicePdfGeneratorService(ILogger<InvoicePdfGeneratorService> logger, IConfiguration configuration)
         {
             this.logger = logger;
-            this.configuration = configuration; // Initialize the configuration
+            this.configuration = configuration;
         }
 
         public async Task GenerateInvoicePdf(Invoice invoice)
         {
-            // Ensure the "Invoices" directory exists
-            string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "Invoices");
-            if (!Directory.Exists(directoryPath))
+            logger.LogInformation("Generating PDF for Invoice: {InvoiceNumber}", invoice.InvoiceNumber);
+
+            try
             {
-                Directory.CreateDirectory(directoryPath);
-            }
-
-            // Define the path for the PDF file
-            string filePath = Path.Combine(directoryPath, $"{invoice.InvoiceNumber}.pdf");
-
-            // Create the PDF document
-            using (var writer = new PdfWriter(filePath))
-            using (var pdf = new PdfDocument(writer))
-            {
-                var document = new Document(pdf);
-
-                // Add Invoice Header
-                document.Add(new Paragraph("INVOICE")
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetFontSize(20));
-
-                // Add Customer Information
-                document.Add(new Paragraph($"Invoice Number: {invoice.InvoiceNumber}"));
-                document.Add(new Paragraph($"Invoice Date: {invoice.InvoiceDate:dd/MM/yyyy}"));
-                document.Add(new Paragraph($"Customer Name: {invoice.CustomerName}"));
-                document.Add(new Paragraph($"Delivery Address: {invoice.DeliveryAddress}"));
-
-                // Add Order Details
-                document.Add(new Paragraph("Order Details").SetBold().SetUnderline());
-                Table table = new Table(UnitValue.CreatePercentArray(new float[] { 2, 1, 1, 1 }))
-                    .UseAllAvailableWidth();
-                table.AddHeaderCell("Product Name");
-                table.AddHeaderCell("Size");
-                table.AddHeaderCell("Color");
-                table.AddHeaderCell("Price");
-                table.AddHeaderCell("Quantity");
-
-                foreach (var product in invoice.Products)
+                string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "Invoices");
+                if (!Directory.Exists(directoryPath))
                 {
-                    table.AddCell(product.ProductName);
-                    table.AddCell(product.productSize.ToString());
-                    table.AddCell(product.productColor.ToString());
-                    table.AddCell(product.Price.ToString("C"));
-                    table.AddCell(product.Quantity.ToString());
+                    logger.LogInformation("Creating directory for invoices at {DirectoryPath}", directoryPath);
+                    Directory.CreateDirectory(directoryPath);
                 }
 
-                document.Add(table);
+                string filePath = Path.Combine(directoryPath, $"{invoice.InvoiceNumber}.pdf");
 
-                // Add Totals
-                document.Add(new Paragraph($"Net Total: {invoice.NetTotal:C}"));
-                document.Add(new Paragraph($"Tax: {invoice.Tax:C}"));
-                document.Add(new Paragraph($"Grand Total: {invoice.GrandTotal:C}"));
+                using (var writer = new PdfWriter(filePath))
+                using (var pdf = new PdfDocument(writer))
+                {
+                    var document = new Document(pdf);
 
-                // Add Footer
-                document.Add(new Paragraph("Thank you for your purchase!").SetTextAlignment(TextAlignment.CENTER));
+                    document.Add(new Paragraph("INVOICE")
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFontSize(20));
+
+                    document.Add(new Paragraph($"Invoice Number: {invoice.InvoiceNumber}"));
+                    document.Add(new Paragraph($"Invoice Date: {invoice.InvoiceDate:dd/MM/yyyy}"));
+                    document.Add(new Paragraph($"Customer Name: {invoice.CustomerName}"));
+                    document.Add(new Paragraph($"Delivery Address: {invoice.DeliveryAddress}"));
+
+                    document.Add(new Paragraph("Order Details").SetBold().SetUnderline());
+                    Table table = new Table(UnitValue.CreatePercentArray(new float[] { 2, 1, 1, 1 }))
+                        .UseAllAvailableWidth();
+                    table.AddHeaderCell("Product Name");
+                    table.AddHeaderCell("Size");
+                    table.AddHeaderCell("Color");
+                    table.AddHeaderCell("Price");
+                    table.AddHeaderCell("Quantity");
+
+                    foreach (var product in invoice.Products)
+                    {
+                        table.AddCell(product.ProductName);
+                        table.AddCell(product.productSize.ToString());
+                        table.AddCell(product.productColor.ToString());
+                        table.AddCell(product.Price.ToString("C"));
+                        table.AddCell(product.Quantity.ToString());
+                    }
+
+                    document.Add(table);
+
+                    document.Add(new Paragraph($"Net Total: {invoice.NetTotal:C}"));
+                    document.Add(new Paragraph($"Tax: {invoice.Tax:C}"));
+                    document.Add(new Paragraph($"Grand Total: {invoice.GrandTotal:C}"));
+
+                    document.Add(new Paragraph("Thank you for your purchase!").SetTextAlignment(TextAlignment.CENTER));
+                }
+
+                logger.LogInformation("Invoice PDF generated successfully at {FilePath}", filePath);
+
+                await SendInvoiceEmail(invoice, filePath);
             }
-
-            Console.WriteLine($"Invoice generated at: {filePath}");
-
-            // Send the invoice via email
-            await SendInvoiceEmail(invoice, filePath);
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error while generating PDF for Invoice: {InvoiceNumber}", invoice.InvoiceNumber);
+                throw;
+            }
         }
 
         private async Task SendInvoiceEmail(Invoice invoice, string filePath)
         {
-            var apiKey = configuration["SendGrid:ApiKey"]; // Read API key from configuration
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("mohanmithun@proton.me", "Shopping Pods");
-            var to = new EmailAddress(invoice.CustomerEmail, invoice.CustomerName);
-            var subject = $"Your Invoice: {invoice.InvoiceNumber}";
-            var plainTextContent = $"Dear {invoice.CustomerName},\n\nPlease find attached your invoice for the order placed.\n\nBest regards,\nYour Sales Team";
-            var htmlContent = plainTextContent.Replace("\n", "<br>");
+            logger.LogInformation("Sending invoice email to {CustomerEmail} for Invoice: {InvoiceNumber}", invoice.CustomerEmail, invoice.InvoiceNumber);
 
-            var message = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            try
+            {
+                var apiKey = configuration["SendGrid:ApiKey"];
+                var client = new SendGridClient(apiKey);
+                var from = new EmailAddress("mohanmithun@proton.me", "Shopping Pods");
+                var to = new EmailAddress(invoice.CustomerEmail, invoice.CustomerName);
+                var subject = $"Your Invoice: {invoice.InvoiceNumber}";
+                var plainTextContent = $"Dear {invoice.CustomerName},\n\nPlease find attached your invoice for the order placed.\n\nBest regards,\nYour Sales Team";
+                var htmlContent = plainTextContent.Replace("\n", "<br>");
 
-            // Attach the PDF invoice
-            var bytes = File.ReadAllBytes(filePath);
-            message.AddAttachment(Path.GetFileName(filePath), Convert.ToBase64String(bytes), "application/pdf");
+                var message = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
-            var response = await client.SendEmailAsync(message);
-            Console.WriteLine($"Invoice sent to {invoice.CustomerEmail} with response status: {response.StatusCode}");
+                var bytes = File.ReadAllBytes(filePath);
+                message.AddAttachment(Path.GetFileName(filePath), Convert.ToBase64String(bytes), "application/pdf");
+
+                var response = await client.SendEmailAsync(message);
+                logger.LogInformation("Invoice email sent to {CustomerEmail} with status: {StatusCode}", invoice.CustomerEmail, response.StatusCode);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error while sending invoice email to {CustomerEmail} for Invoice: {InvoiceNumber}", invoice.CustomerEmail, invoice.InvoiceNumber);
+                throw;
+            }
         }
 
         public async Task SendOrderStatusUpdateEmail(string customerEmail, string orderStatus, string invoiceNumber)
         {
-            var apiKey = configuration["SendGrid:ApiKey"];
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("mohanmithun@proton.me", "Shopping Pods");
-            var to = new EmailAddress(customerEmail);
-            var subject = $"Order Status Update: {invoiceNumber}";
-            var plainTextContent = $"Dear Customer,\n\nYour order with Invoice Number: {invoiceNumber} has been {orderStatus}.\n\nBest regards,\nYour Sales Team";
-            var htmlContent = plainTextContent.Replace("\n", "<br>");
+            logger.LogInformation("Sending order status update email to {CustomerEmail} for Invoice: {InvoiceNumber} with status: {OrderStatus}", customerEmail, invoiceNumber, orderStatus);
 
-            var message = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            var response = await client.SendEmailAsync(message);
-            Console.WriteLine($"Status update email sent to {customerEmail} with response status: {response.StatusCode}");
+            try
+            {
+                var apiKey = configuration["SendGrid:ApiKey"];
+                var client = new SendGridClient(apiKey);
+                var from = new EmailAddress("mohanmithun@proton.me", "Shopping Pods");
+                var to = new EmailAddress(customerEmail);
+                var subject = $"Order Status Update: {invoiceNumber}";
+                var plainTextContent = $"Dear Customer,\n\nYour order with Invoice Number: {invoiceNumber} has been {orderStatus}.\n\nBest regards,\nYour Sales Team";
+                var htmlContent = plainTextContent.Replace("\n", "<br>");
+
+                var message = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+                var response = await client.SendEmailAsync(message);
+                logger.LogInformation("Order status update email sent to {CustomerEmail} with status: {StatusCode}", customerEmail, response.StatusCode);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error while sending order status update email to {CustomerEmail} for Invoice: {InvoiceNumber}", customerEmail, invoiceNumber);
+                throw;
+            }
         }
-
     }
 }
