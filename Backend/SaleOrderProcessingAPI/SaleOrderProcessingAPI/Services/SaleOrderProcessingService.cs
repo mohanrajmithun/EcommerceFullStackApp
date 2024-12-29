@@ -12,7 +12,7 @@ using SaleOrderProcessingAPI.Interfaces;
 using SalesOrderInvoiceAPI.Entities;
 using OpenTelemetry.Trace;
 using System.Diagnostics;
-
+using Microsoft.Extensions.Logging;
 
 namespace SaleOrderProcessingAPI.Services
 {
@@ -23,88 +23,83 @@ namespace SaleOrderProcessingAPI.Services
         private readonly IAddressValidationService addressValidationService;
         private readonly IConnection _connection;
         private readonly IModel _channel;
+        private readonly ILogger<SaleOrderProcessingService> _logger;
         private const string QueueName = "ProcessedOrdersQueue";
         private static readonly ActivitySource ActivitySource = new ActivitySource("SaleOrderProcessingService");
 
-        public SaleOrderProcessingService(AppDbContext appDbContext, ISaleOrderDataServiceClient SaleOrderDataServiceClient, IAddressValidationService addressValidationService)
+        public SaleOrderProcessingService(
+            AppDbContext appDbContext,
+            ISaleOrderDataServiceClient SaleOrderDataServiceClient,
+            IAddressValidationService addressValidationService,
+            ILogger<SaleOrderProcessingService> logger)
         {
             this.appDbContext = appDbContext;
             this.SaleOrderDataServiceClient = SaleOrderDataServiceClient;
             this.addressValidationService = addressValidationService;
+            _logger = logger;
+
             var factory = new ConnectionFactory()
             {
-                HostName = "localhost",
+                HostName = "rabbitmq", // Use the service name as the hostname
+    		    Port = 5672,            // Ensure the correct port is used
                 UserName = "guest",
                 Password = "guest"
-            }; // Update with your RabbitMQ settings
+            };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
             _channel.QueueDeclare(queue: QueueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
         }
 
-
-
-
         public async Task<IList<SaleOrderDTO>> FetchSaleOrdersAsync()
         {
+            _logger.LogInformation("Fetching sale orders...");
             Task<IList<SaleOrderDTO>> saleorderTask = SaleOrderDataServiceClient.GetAllSaleOrders();
-
-            IList<SaleOrderDTO> saleorders = await saleorderTask;
-
+            var saleorders = await saleorderTask;
+            _logger.LogInformation("Fetched {Count} sale orders.", saleorders.Count);
             return saleorders.Where(orders => orders.Status == OrderStatus.Created).ToList();
-
         }
 
         public async Task<List<ProcessedOrder>> ProcessSaleOrderAsync()
         {
+            _logger.LogInformation("Starting sale order processing...");
             var saleOrders = await FetchSaleOrdersAsync();
             var processedOrders = new List<ProcessedOrder>();
 
             foreach (var order in saleOrders)
             {
-                Task<bool> IsOrderValidTask = ValidateOrder(order);
+                _logger.LogInformation("Validating order {InvoiceNumber}...", order.InvoiceNumber);
+                bool isOrderValid = await ValidateOrder(order);
 
-                bool IsOrderValid = await IsOrderValidTask;
-
-                if (IsOrderValid)
+                if (isOrderValid)
                 {
-                    var ProcessedOrder = CreateProcessedOrder(order);
-                    processedOrders.Add(ProcessedOrder);
-
-
+                    _logger.LogInformation("Order {InvoiceNumber} is valid. Creating processed order...", order.InvoiceNumber);
+                    var processedOrder = CreateProcessedOrder(order);
+                    processedOrders.Add(processedOrder);
                 }
 
-
-                var change_status = await SaleOrderDataServiceClient.UpdateOrderStatusAsync(order.InvoiceNumber, OrderStatus.Processing);
-
-
-
+                _logger.LogInformation("Updating order status for {InvoiceNumber} to Processing...", order.InvoiceNumber);
+                await SaleOrderDataServiceClient.UpdateOrderStatusAsync(order.InvoiceNumber, OrderStatus.Processing);
             }
 
             foreach (var processedOrder in processedOrders)
             {
+                _logger.LogInformation("Enqueuing processed order {InvoiceNumber}...", processedOrder.InvoiceNumber);
                 EnqueueProcessedOrder(processedOrder);
             }
 
+            _logger.LogInformation("Sale order processing completed. {Count} orders processed.", processedOrders.Count);
             return processedOrders;
-
         }
 
         public ProcessedOrder CreateProcessedOrder(SaleOrderDTO order)
         {
+            _logger.LogInformation("Creating processed order for {InvoiceNumber}...", order.InvoiceNumber);
             var processedProducts = new List<ProcessedProduct>();
 
             if (order.Quantities.Count == 0)
             {
-                List<int> Quanities = new List<int>();
-                for (int i = 0; i < order.ProductIDs.Count; i++)
-                {
-                    Quanities.Add(1);
-
-                }
-
-                order.Quantities = Quanities;
-
+                _logger.LogWarning("No quantities provided for {InvoiceNumber}. Defaulting to quantity of 1 for all products.", order.InvoiceNumber);
+                order.Quantities = Enumerable.Repeat(1, order.ProductIDs.Count).ToList();
             }
 
             for (int i = 0; i < order.ProductIDs.Count; i++)
@@ -112,95 +107,87 @@ namespace SaleOrderProcessingAPI.Services
                 processedProducts.Add(new ProcessedProduct
                 {
                     ProductId = order.ProductIDs[i],
-                    Quantity = order.Quantities[i] // Access the corresponding quantity
+                    Quantity = order.Quantities[i]
                 });
             }
-            // Create processed order with necessary details
+
+            _logger.LogInformation("Processed order for {InvoiceNumber} created successfully.", order.InvoiceNumber);
             return new ProcessedOrder
             {
                 InvoiceNumber = order.InvoiceNumber,
                 CustomerId = order.CustomerId,
                 TotalAmount = order.NetTotal + (order.Tax ?? 0),
-
-
                 Products = processedProducts
             };
         }
 
-
         public async Task<bool> ValidateOrder(SaleOrderDTO order)
         {
+            _logger.LogInformation("Validating order {InvoiceNumber}...", order.InvoiceNumber);
             if (order == null || order.ProductIDs == null || !order.ProductIDs.Any())
             {
+                _logger.LogWarning("Order {InvoiceNumber} validation failed: Missing products.", order.InvoiceNumber);
                 return false;
             }
+
             bool isAddressValid = await addressValidationService.IsAddressValidAsync(order.DeliveryAddress);
-
-
             if (!isAddressValid)
             {
+                _logger.LogWarning("Order {InvoiceNumber} validation failed: Invalid delivery address.", order.InvoiceNumber);
                 return false;
             }
 
-
-
-            // Add more validation logic as needed
+            _logger.LogInformation("Order {InvoiceNumber} validation succeeded.", order.InvoiceNumber);
             return true;
         }
 
         public async Task<List<ProcessedOrder>> ProcessShippedCancelledDeliveredOrdersAsync(string invoiceNumber)
         {
-            // Fetch orders that are either shipped, cancelled, or delivered
+            _logger.LogInformation("Processing shipped, cancelled, or delivered orders for {InvoiceNumber}...", invoiceNumber);
             var saleOrders = await FetchShippedCancelledDeliveredOrdersAsync(invoiceNumber);
             var processedOrders = new List<ProcessedOrder>();
 
             foreach (var order in saleOrders)
             {
-                // Example logic for processing orders (this might vary based on your business rules)
-                Task<bool> IsOrderValidTask = ValidateOrder(order);
-                bool IsOrderValid = await IsOrderValidTask;
+                _logger.LogInformation("Validating order {InvoiceNumber}...", order.InvoiceNumber);
+                bool isOrderValid = await ValidateOrder(order);
 
-                if (IsOrderValid)
+                if (isOrderValid)
                 {
+                    _logger.LogInformation("Order {InvoiceNumber} is valid. Creating processed order...", order.InvoiceNumber);
                     var processedOrder = CreateProcessedOrder(order);
                     processedOrders.Add(processedOrder);
                 }
-
-                // Update order status based on your business needs
-                // This can be "Shipped", "Cancelled", or "Delivered" status update, depending on the requirement
-                //var changeStatus = await SaleOrderDataServiceClient.UpdateOrderStatusAsync(order.InvoiceNumber, OrderStatus.Completed);  // Or other status as needed
             }
 
-            // Enqueue processed orders to the RabbitMQ queue
             foreach (var processedOrder in processedOrders)
             {
+                _logger.LogInformation("Enqueuing processed order {InvoiceNumber}...", processedOrder.InvoiceNumber);
                 EnqueueProcessedOrder(processedOrder);
             }
 
+            _logger.LogInformation("Processed shipped, cancelled, or delivered orders for {InvoiceNumber} completed.", invoiceNumber);
             return processedOrders;
         }
 
-        // Fetch orders that are shipped, cancelled, or delivered
         public async Task<IList<SaleOrderDTO>> FetchShippedCancelledDeliveredOrdersAsync(string invoiceNumber)
         {
-            // Assuming you want orders in Shipped, Cancelled, or Delivered status
+            _logger.LogInformation("Fetching shipped, cancelled, or delivered orders for {InvoiceNumber}...", invoiceNumber);
             Task<IList<SaleOrderDTO>> saleorderTask = SaleOrderDataServiceClient.GetAllSaleOrders();
+            var saleorders = await saleorderTask;
 
-            IList<SaleOrderDTO> saleorders = await saleorderTask;
-
-            return saleorders.Where(orders => orders.InvoiceNumber == invoiceNumber).ToList();
+            var filteredOrders = saleorders.Where(orders => orders.InvoiceNumber == invoiceNumber).ToList();
+            _logger.LogInformation("Fetched {Count} orders for {InvoiceNumber}.", filteredOrders.Count, invoiceNumber);
+            return filteredOrders;
         }
-
-
-
 
         public void EnqueueProcessedOrder(ProcessedOrder order)
         {
             using var activity = ActivitySource.StartActivity("RabbitMQ Publish", ActivityKind.Producer);
 
-
             try
             {
+                _logger.LogInformation("Publishing order {InvoiceNumber} to RabbitMQ...", order.InvoiceNumber);
                 var message = JsonSerializer.Serialize(order);
                 var body = Encoding.UTF8.GetBytes(message);
 
@@ -216,17 +203,17 @@ namespace SaleOrderProcessingAPI.Services
                     activity.SetTag("order.totalAmount", order.TotalAmount);
                     activity.SetStatus(ActivityStatusCode.Ok);
                 }
+
+                _logger.LogInformation("Order {InvoiceNumber} published to RabbitMQ successfully.", order.InvoiceNumber);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Failed to publish order {InvoiceNumber} to RabbitMQ.", order.InvoiceNumber);
                 activity?.SetStatus(ActivityStatusCode.Error, ex.Message);
                 activity?.SetTag("exception.message", ex.Message);
                 activity?.SetTag("exception.stacktrace", ex.StackTrace);
                 throw;
             }
         }
-
     }
 }
-
-

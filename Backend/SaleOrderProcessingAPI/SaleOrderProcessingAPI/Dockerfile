@@ -9,34 +9,23 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /source
 
-## Copy and restore SalesAPILibrary
-COPY ["SalesAPILibrary/SalesAPILibrary.csproj", "SalesAPILibrary/"]
+COPY Backend/SalesAPILibrary/SalesAPILibrary.csproj SalesAPILibrary/
 RUN dotnet restore "SalesAPILibrary/SalesAPILibrary.csproj"
 
-# Copy and build SalesAPILibrary
-COPY  SalesAPILibrary/ SalesAPILibrary/
-WORKDIR "/source/SalesAPILibrary"
-RUN dotnet build "SalesAPILibrary.csproj" -c Release -o /app
 
+# Copy and build SalesAPILibrary
+COPY Backend/SalesAPILibrary/ SalesAPILibrary/
+WORKDIR "/source/SalesAPILibrary"
+RUN dotnet build "SalesAPILibrary.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 WORKDIR "/source"
-
-COPY ["./SaleOrderProcessingAPI/SaleOrderProcessingAPI/SaleOrderProcessingAPI.csproj", "SaleOrderProcessingAPI/"]
+COPY ["Backend/SaleOrderProcessingAPI/SaleOrderProcessingAPI/SaleOrderProcessingAPI.csproj", "SaleOrderProcessingAPI/"]
 RUN dotnet restore "./SaleOrderProcessingAPI/SaleOrderProcessingAPI.csproj"
 
 
-COPY ./SaleOrderProcessingAPI/SaleOrderProcessingAPI SaleOrderProcessingAPI/
+COPY Backend/SaleOrderProcessingAPI/SaleOrderProcessingAPI SaleOrderProcessingAPI/
 WORKDIR "/source/SaleOrderProcessingAPI"
 RUN dotnet build "./SaleOrderProcessingAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-WORKDIR "/source/SaleOrderProcessingAPI"
-
-# Optional: Install dotnet-ef globally if you need it for migrations at runtime
-RUN dotnet tool install --global dotnet-ef --version 6.0.0
-ENV PATH="$PATH:/root/.dotnet/tools"
-
-# Migrate the database (if needed)
-RUN dotnet ef database update --project SaleOrderProcessingAPI.csproj
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
