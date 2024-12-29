@@ -15,13 +15,27 @@ using ProductsDataApiService.ServiceClients;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using OpenTelemetry;
+using Serilog;
+using Serilog.Context;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .Enrich.WithMachineName()              // Adds the machine name
+    .Enrich.WithThreadId()
+    .WriteTo.Console()
+    .WriteTo.Seq("http://seq:5341") // Replace with your Seq endpoint
+    .MinimumLevel.Information()            // Adjust log level
+    .CreateLogger();
+
+builder.Logging.ClearProviders();
+builder.Host.UseSerilog();
+
 // Add services to the container.
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -161,12 +175,12 @@ builder.Services.AddScoped<ICartService,CartService>();
 
 builder.Services.AddHttpClient<ISaleOrderDataServiceClient, SaleOrderDataServiceClient>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7083"); // Replace with the actual base URL of the customer repository service
+    client.BaseAddress = new Uri("http://saleorderdataservice"); // Replace with the actual base URL of the customer repository service
 });
 
 builder.Services.AddHttpClient<ISaleOrderProcessingServiceClient, SaleOrderProcessingServiceClient>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7192"); // Replace with the actual base URL of the customer repository service
+    client.BaseAddress = new Uri("http://saleorderprocessingapi"); // Replace with the actual base URL of the customer repository service
 });
 
 
@@ -221,19 +235,31 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//app.Use(async (context, next) =>
-//{
-//    var logger = app.Services.GetRequiredService<ILogger<Program>>();
-//    logger.LogInformation($"Incoming request: {context.Request.Method} {context.Request.Path}");
 
-//    if (context.Request.Headers.ContainsKey("Authorization"))
-//    {
-//        var authHeader = context.Request.Headers["Authorization"];
-//        logger.LogInformation($"Authorization Header: {authHeader}");
-//    }
+// Remove this section if using app.UseSerilogRequestLogging()
+app.Use(async (context, next) =>
+{
+    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    var traceId = context.Request.Headers["trace-id"].FirstOrDefault() ?? Guid.NewGuid().ToString();
+    LogContext.PushProperty("TraceId", traceId);
 
-//    await next.Invoke();
-//});
+    context.Response.Headers["trace-id"] = traceId;
+
+    await next.Invoke();
+});
+
+app.UseSerilogRequestLogging(options =>
+{
+    options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+    {
+        diagnosticContext.Set("RequestHost", httpContext.Request.Host.Value);
+        diagnosticContext.Set("RequestScheme", httpContext.Request.Scheme);
+        diagnosticContext.Set("RequestPath", httpContext.Request.Path);
+        diagnosticContext.Set("QueryString", httpContext.Request.QueryString.Value);
+        diagnosticContext.Set("UserAgent", httpContext.Request.Headers["User-Agent"].ToString());
+    };
+});
+
 app.UseRouting();
 
 app.UseHttpsRedirection();
@@ -246,5 +272,17 @@ app.UseStaticFiles(); // Enable serving static files
 app.UseCors("AllowOrigin"); // Use the defined CORS policy
 
 app.MapControllers();
+
+app.Lifetime.ApplicationStarted.Register(() =>
+{
+    Log.Information("ProductsData Service started at {Time}", DateTime.UtcNow);
+});
+
+// Log when the service is stopping
+app.Lifetime.ApplicationStopping.Register(() =>
+{
+    Log.Information("ProductsData Service is stopping at {Time}", DateTime.UtcNow);
+});
+
 
 app.Run();

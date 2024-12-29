@@ -9,32 +9,27 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /source
 
-## Copy and restore SalesAPILibrary
-COPY ["SalesAPILibrary/SalesAPILibrary.csproj", "SalesAPILibrary/"]
+# Copy and restore SalesAPILibrary
+COPY Backend/SalesAPILibrary/SalesAPILibrary.csproj SalesAPILibrary/
 RUN dotnet restore "SalesAPILibrary/SalesAPILibrary.csproj"
 
+
 # Copy and build SalesAPILibrary
-COPY  SalesAPILibrary/ SalesAPILibrary/
+COPY Backend/SalesAPILibrary/ SalesAPILibrary/
 WORKDIR "/source/SalesAPILibrary"
-RUN dotnet build "SalesAPILibrary.csproj" -c Release -o /app
+RUN dotnet build "SalesAPILibrary.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 
 # Go back to /src and restore ProductsDataApiService
 WORKDIR "/source"
-COPY ["./ProductsDataApiService/ProductsDataApiService/ProductsDataApiService.csproj", "ProductsDataApiService/"]
+COPY ["Backend/ProductsDataApiService/ProductsDataApiService/ProductsDataApiService.csproj", "ProductsDataApiService/"]
 RUN dotnet restore "./ProductsDataApiService/ProductsDataApiService.csproj"
 
 # Copy the rest of the source code and build ProductsDataApiService
-COPY ./ProductsDataApiService/ProductsDataApiService ProductsDataApiService/
+COPY Backend/ProductsDataApiService/ProductsDataApiService ProductsDataApiService/
 WORKDIR "/source/ProductsDataApiService"
 RUN dotnet build "./ProductsDataApiService.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-WORKDIR "/source/ProductsDataApiService"
-
-RUN dotnet tool install --global dotnet-ef --version 6.0.0
-ENV PATH="$PATH:/root/.dotnet/tools"
-
-RUN dotnet ef database update --project ProductsDataApiService.csproj
 
 # Publish stage
 FROM build AS publish

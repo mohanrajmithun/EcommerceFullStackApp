@@ -18,10 +18,13 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.9.0" />
     <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.9.0-beta.1" />
-    <PackageReference Include="Serilog" Version="4.0.1" />
-    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
-    <PackageReference Include="SerilogTimings" Version="3.1.0" />
+	  <PackageReference Include="Serilog" Version="4.0.1" />
+	  <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+	  <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
+	  <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
+	  <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+	  <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
+	  <PackageReference Include="SerilogTimings" Version="3.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	  <PackageReference Include="itext7" Version="8.0.5" />
 	  <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.5" />
@@ -49,10 +52,11 @@
     <Folder Include="Enums\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="SalesAPILibrary">
-      <HintPath>..\..\SalesAPILibrary\bin\Debug\net6.0\SalesAPILibrary.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="SalesAPILibrary">
+			<HintPath>bin/Debug/net6.0/SalesAPILibrary.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
 
 </Project>
