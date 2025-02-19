@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salesinvoicegeneratorserviceapi
+  namespace: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: salesinvoicegeneratorserviceapi
+  template:
+    metadata:
+      labels:
+        app: salesinvoicegeneratorserviceapi
+    spec:
+      containers:
+      - name: salesinvoicegeneratorserviceapi
+        image: backend-salesinvoicegeneratorserviceapi
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: salesinvoicegeneratorserviceapi
+  namespace: ecommerce-app
+spec:
+  selector:
+    app: salesinvoicegeneratorserviceapi
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30085  # NodePort for external access (choose a port in the range 30000-32767)
+  type: NodePort

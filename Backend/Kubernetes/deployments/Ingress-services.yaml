@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ecommerce-app-ingress
+  namespace: ecommerce-app
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx # Add this line to specify the IngressClass
+  rules:
+  - host: ecommerce.local
+    http:
+      paths:
+      - path: /invoicedataservice
+        pathType: Prefix
+        backend:
+          service:
+            name: invoicedataservice
+            port:
+              number: 80
+      - path: /rabbitmq
+        pathType: Prefix
+        backend:
+          service:
+            name: rabbitmq
+            port:
+              number: 15672
+      - path: /customerdatapi
+        pathType: Prefix
+        backend:
+          service:
+            name: customerdatapi
+            port:
+              number: 80

@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
-  labels:
-    app: mongodb
+  namespace: ecommerce-app
 spec:
   replicas: 1
   selector:
@@ -16,18 +15,32 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: mongo:latest
+        image: mongo
         ports:
         - containerPort: 27017
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
-          value: "admin"
+          value: admin
         - name: MONGO_INITDB_ROOT_PASSWORD
-          value: "admin"
+          value: admin
         volumeMounts:
         - name: mongodb-data
           mountPath: /data/db
       volumes:
       - name: mongodb-data
-        persistentVolumeClaim:
-          claimName: mongodb-pvc
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  namespace: ecommerce-app
+spec:
+  type: NodePort
+  selector:
+    app: mongodb
+  ports:
+    - port: 27017
+      targetPort: 27017
+      nodePort: 30017  # Exposes it on localhost:30017
+

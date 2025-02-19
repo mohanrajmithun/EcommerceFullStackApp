@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productdatapi
+  namespace: ecommerce-app
+spec:
+  replicas: 2  # Initial pod count (HPA will scale this)
+  selector:
+    matchLabels:
+      app: productdatapi
+  template:
+    metadata:
+      labels:
+        app: productdatapi
+    spec:
+      containers:
+      - name: productdatapi
+        image: backend-productsdataapiservice:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        resources:  # Set CPU & memory limits
+          requests:
+            cpu: "200m"   # Request 200 millicores (0.2 CPU)
+            memory: "256Mi"
+          limits:
+            cpu: "500m"   # Limit to 500 millicores (0.5 CPU)
+            memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: productdatapi
+  namespace: ecommerce-app
+spec:
+  selector:
+    app: productdatapi
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30081
+  type: NodePort

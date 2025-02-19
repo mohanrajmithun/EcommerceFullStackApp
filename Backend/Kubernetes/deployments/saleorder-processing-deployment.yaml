@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: saleorderprocessingapi
+  namespace: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saleorderprocessingapi
+  template:
+    metadata:
+      labels:
+        app: saleorderprocessingapi
+    spec:
+      containers:
+      - name: saleorderdataservice
+        image: backend-saleorderprocessingapi
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: saleorderprocessingapi
+  namespace: ecommerce-app
+spec:
+  selector:
+    app: saleorderprocessingapi
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30084  # NodePort for external access (choose a port in the range 30000-32767)
+  type: NodePort

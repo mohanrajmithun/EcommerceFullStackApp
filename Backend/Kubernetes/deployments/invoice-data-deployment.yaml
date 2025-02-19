@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invoicedataservice
+  namespace: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invoicedataservice
+  template:
+    metadata:
+      labels:
+        app: invoicedataservice
+    spec:
+      containers:
+      - name: invoicedataservice
+        image: backend-invoicedataservice
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: invoicedataservice
+  namespace: ecommerce-app
+spec:
+  type: NodePort  # Changed to NodePort
+  selector:
+    app: invoicedataservice
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30082

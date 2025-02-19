@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customerdatapi
+  namespace: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customerdatapi
+  template:
+    metadata:
+      labels:
+        app: customerdatapi
+    spec:
+      containers:
+      - name: customerdatapi
+        image: backend-customerdatapi
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customerdatapi
+  namespace: ecommerce-app
+spec:
+  selector:
+    app: customerdatapi
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080  # Specify the NodePort to expose the service externally
+  type: NodePort

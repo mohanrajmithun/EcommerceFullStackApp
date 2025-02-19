@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seq
+  namespace: ecommerce-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seq
+  template:
+    metadata:
+      labels:
+        app: seq
+    spec:
+      containers:
+      - name: seq
+        image: datalust/seq:latest
+        ports:
+        - containerPort: 80
+          name: http-port
+        - containerPort: 5342
+          name: api-port
+        env:
+        - name: SEQ_FIRSTRUN_ADMINPASSWORD
+          value: "admin"
+        - name: SEQ_API_KEY
+          value: "vwvAAQAg3hlifaEwx73M"
+        - name: ACCEPT_EULA
+          value: "Y"
+        volumeMounts:
+        - name: seq-data
+          mountPath: /data
+        - name: seq-logs
+          mountPath: /logs
+      volumes:
+      - name: seq-data
+        emptyDir: {}
+      - name: seq-logs
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seq
+  namespace: ecommerce-app
+spec:
+  type: NodePort
+  selector:
+    app: seq
+  ports:
+  - name: http-port
+    port: 80
+    targetPort: 80
+    nodePort: 30079  # NodePort for HTTP
+  - name: api-port
+    port: 5341  # Change to 5341 to match your Serilog config
+    targetPort: 5341
+    nodePort: 30541 
