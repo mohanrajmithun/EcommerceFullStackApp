@@ -55,6 +55,10 @@
 
 
 
+	<ItemGroup>
+		<ProjectReference Include="../SalesAPILibrary/SalesAPILibrary.csproj" />
+	</ItemGroup>
+
 	<!--<ItemGroup>-->
   <!--<ProjectReference Include="..\SalesAPILibrary\SalesAPILibrary.csproj"></ProjectReference>-->
 	<!-- </ItemGroup>-->

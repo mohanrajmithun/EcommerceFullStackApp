@@ -24,6 +24,7 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Host.UseSerilog();
+builder.Services.AddHealthChecks();
 
 
 // Add services to the container.
@@ -122,7 +123,7 @@ app.UseSerilogRequestLogging(options =>
 });
 
 app.UseHttpsRedirection();
-
+app.MapHealthChecks("/healthz");
 app.UseAuthorization();
 app.UseCors("AllowOrigin"); // Use the defined CORS policy
 

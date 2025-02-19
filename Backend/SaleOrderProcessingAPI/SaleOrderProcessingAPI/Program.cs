@@ -27,6 +27,8 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Host.UseSerilog();
+builder.Services.AddHealthChecks();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -115,6 +117,7 @@ app.UseSerilogRequestLogging(options =>
 });
 
 app.UseHttpsRedirection();
+app.MapHealthChecks("/healthz");
 
 app.UseAuthorization();
 

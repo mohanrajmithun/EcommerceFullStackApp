@@ -33,6 +33,8 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Host.UseSerilog();
+builder.Services.AddHealthChecks();
+
 
 // Add services to the container.
 
@@ -261,7 +263,7 @@ app.UseSerilogRequestLogging(options =>
 });
 
 app.UseRouting();
-
+app.MapHealthChecks("/healthz");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 

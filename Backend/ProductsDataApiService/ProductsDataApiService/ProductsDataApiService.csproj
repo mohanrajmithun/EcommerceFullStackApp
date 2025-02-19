@@ -52,10 +52,9 @@
     <Folder Include="Enums\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
+
 	<ItemGroup>
-		<Reference Include="SalesAPILibrary">
-			<HintPath>bin/Debug/net6.0/SalesAPILibrary.dll</HintPath>
-		</Reference>
+		<ProjectReference Include="../SalesAPILibrary/SalesAPILibrary.csproj" />
 	</ItemGroup>
 
 

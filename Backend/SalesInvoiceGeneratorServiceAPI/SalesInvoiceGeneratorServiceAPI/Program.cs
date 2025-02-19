@@ -31,6 +31,8 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Host.UseSerilog();
+builder.Services.AddHealthChecks();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -43,7 +45,6 @@ builder.Services.AddScoped<IInvoicePdfGeneratorService, InvoicePdfGeneratorServi
 builder.Services.AddScoped<ICustomerDataService, CustomerDataAPIService>();
 builder.Services.AddScoped<IProductDataAPIService, ProductDataAPIService>();
 
-builder.Configuration.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
 
 
 builder.Services.AddHttpClient<ISaleOrderDataServiceClient, SaleOrderDataServiceClient>(client =>
@@ -154,7 +155,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHealthChecks("/healthz");
 
 var saleOrderConsumer = app.Services.GetRequiredService<ISaleOrderConsumer>();
 saleOrderConsumer.StartListening();

@@ -10,6 +10,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerDataAPI", "Customer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesAPILibrary", "..\SalesAPILibrary\SalesAPILibrary.csproj", "{BAEF3890-F573-455F-B240-2C6D466B420B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaleOrderDataService", "..\SaleOrderDataService\SaleOrderDataService\SaleOrderDataService.csproj", "{F542217A-DADC-4A07-9CEC-3AE850C9AD14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsDataApiService", "..\ProductsDataApiService\ProductsDataApiService\ProductsDataApiService.csproj", "{6D6BBC2D-8B50-4DA1-AD2B-8AFFE23EC1A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaleOrderProcessingAPI", "..\SaleOrderProcessingAPI\SaleOrderProcessingAPI\SaleOrderProcessingAPI.csproj", "{A2DA24A2-04BF-4668-9974-08EDB53ED4C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesInvoiceGeneratorServiceAPI", "..\SalesInvoiceGeneratorServiceAPI\SalesInvoiceGeneratorServiceAPI\SalesInvoiceGeneratorServiceAPI.csproj", "{1624BB9D-FD99-4307-8A0E-2AA547895FAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceDataService", "..\InvoiceDataService\InvoiceDataService\InvoiceDataService.csproj", "{2B55B01A-32B1-40E3-B216-AECDAAA7AE96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +34,26 @@ Global
 		{BAEF3890-F573-455F-B240-2C6D466B420B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAEF3890-F573-455F-B240-2C6D466B420B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAEF3890-F573-455F-B240-2C6D466B420B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F542217A-DADC-4A07-9CEC-3AE850C9AD14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F542217A-DADC-4A07-9CEC-3AE850C9AD14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F542217A-DADC-4A07-9CEC-3AE850C9AD14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F542217A-DADC-4A07-9CEC-3AE850C9AD14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D6BBC2D-8B50-4DA1-AD2B-8AFFE23EC1A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D6BBC2D-8B50-4DA1-AD2B-8AFFE23EC1A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D6BBC2D-8B50-4DA1-AD2B-8AFFE23EC1A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D6BBC2D-8B50-4DA1-AD2B-8AFFE23EC1A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2DA24A2-04BF-4668-9974-08EDB53ED4C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2DA24A2-04BF-4668-9974-08EDB53ED4C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2DA24A2-04BF-4668-9974-08EDB53ED4C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2DA24A2-04BF-4668-9974-08EDB53ED4C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1624BB9D-FD99-4307-8A0E-2AA547895FAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1624BB9D-FD99-4307-8A0E-2AA547895FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1624BB9D-FD99-4307-8A0E-2AA547895FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1624BB9D-FD99-4307-8A0E-2AA547895FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B55B01A-32B1-40E3-B216-AECDAAA7AE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B55B01A-32B1-40E3-B216-AECDAAA7AE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B55B01A-32B1-40E3-B216-AECDAAA7AE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B55B01A-32B1-40E3-B216-AECDAAA7AE96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

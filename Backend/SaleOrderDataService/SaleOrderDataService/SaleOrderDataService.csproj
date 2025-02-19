@@ -43,11 +43,12 @@
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
 
+
+
 	<ItemGroup>
-		<Reference Include="SalesAPILibrary">
-			<HintPath>bin/Debug/net6.0/SalesAPILibrary.dll</HintPath>
-		</Reference>
+		<ProjectReference Include="../SalesAPILibrary/SalesAPILibrary.csproj" />
 	</ItemGroup>
+
 
 
 </Project>
