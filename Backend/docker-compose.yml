@@ -20,6 +20,12 @@ services:
       - "15672:15672" # RabbitMQ Management UI
     networks:
       - app_network
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s
+      retries: 3
+      start_period: 5s
+      timeout: 10s
     
   mongodb:
     image: mongo:latest
@@ -55,6 +61,7 @@ services:
     build:
       context: ..
       dockerfile: Backend/InvoiceDataService/InvoiceDataService/Dockerfile.yaml
+    image: mohanmithun005/invoicedataservice:latest  # Add image with Docker Hub username
     ports:
       - "5001:80"
     environment:
@@ -66,6 +73,8 @@ services:
     build:
       context: ..
       dockerfile: Backend/CustomerDataAPI/CustomerDataAPI/Dockerfile
+    image: mohanmithun005/customerdatapi:latest  # Add image with Docker Hub username
+
     ports:
       - "5002:80"
     environment:
@@ -77,6 +86,7 @@ services:
     build:
       context: ..
       dockerfile: Backend/ProductsDataApiService/ProductsDataApiService/Dockerfile
+    image: mohanmithun005/productsdataapiservice:latest  # Add image with Docker Hub username
     ports:
       - "5003:80"
     environment:
@@ -88,6 +98,7 @@ services:
     build:
       context: ..
       dockerfile: Backend/SaleOrderDataService/SaleOrderDataService/Dockerfile
+    image: mohanmithun005/saleorderdataservice:latest  # Add image with Docker Hub username
     ports:
       - "5004:80"
     environment:
@@ -99,6 +110,7 @@ services:
     build:
       context: ..
       dockerfile: Backend/SaleOrderProcessingAPI/SaleOrderProcessingAPI/Dockerfile
+    image: mohanmithun005/saleorderprocessingapi:latest  # Add image with Docker Hub username
     ports:
       - "5005:80"
     environment:
@@ -110,6 +122,7 @@ services:
     build:
       context: ..
       dockerfile: Backend/SalesInvoiceGeneratorServiceAPI/SalesInvoiceGeneratorServiceAPI/Dockerfile
+    image: mohanmithun005/salesinvoicegeneratorserviceapi:latest  # Add image with Docker Hub username
     ports:
       - "5006:80"
     environment:
