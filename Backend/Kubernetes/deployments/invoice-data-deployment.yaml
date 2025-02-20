@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: invoicedataservice
-        image: backend-invoicedataservice
-        imagePullPolicy: Never
+        image: mohanmithun005/invoicedataservice
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---

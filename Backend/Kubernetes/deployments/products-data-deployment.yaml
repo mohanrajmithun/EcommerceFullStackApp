@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: productdatapi
-        image: backend-productsdataapiservice:latest
-        imagePullPolicy: Never
+        image: mohanmithun005/productsdataapiservice
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         readinessProbe:

@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: customerdatapi
-        image: backend-customerdatapi
-        imagePullPolicy: Never
+        image: mohanmithun005/customerdatapi
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---

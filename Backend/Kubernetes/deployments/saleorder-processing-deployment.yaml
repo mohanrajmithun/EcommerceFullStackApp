@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: saleorderdataservice
-        image: backend-saleorderprocessingapi
-        imagePullPolicy: Never
+        image: mohanmithun005/saleorderprocessingapi
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---

@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: salesinvoicegeneratorserviceapi
-        image: backend-salesinvoicegeneratorserviceapi
-        imagePullPolicy: Never
+        image: mohanmithun005/salesinvoicegeneratorserviceapi
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---
