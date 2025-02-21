@@ -33,13 +33,17 @@ jobs:
       - name: Push Docker Images
         run: |
           docker-compose -f Backend/docker-compose.yml push
-
-
+      
       - name: Setup Kubernetes Config
         run: |
+          mkdir -p ~/.kube  # Ensure the .kube directory exists
           echo "$KUBECONFIG_DATA" | base64 --decode > ~/.kube/config
+          chmod 600 ~/.kube/config  # Set proper permissions
         env:
           KUBECONFIG_DATA: ${{ secrets.KUBECONFIG_DATA }}
+
+
+
 
       - name: Verify Kubernetes Context
         run: kubectl config current-context
