@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -38,12 +38,15 @@ jobs:
         run: |
             mkdir -p ~/.kube
             echo "${{ secrets.KUBECONFIG }}" | base64 --decode > ~/.kube/config
-            chmod 600 ~/.kube/config  # Secure kubeconfig file
+            chmod 600 ~/.kube/config
             export KUBECONFIG=~/.kube/config  # Ensure kubectl uses this file
 
             # Validate the kubeconfig file
             echo "Kubeconfig file content:"
             cat ~/.kube/config
+
+            # Replace localhost with ngrok URL in kubeconfig
+            sed -i "s|localhost:6443|d4ad-23-121-200-237.ngrok-free.app|g" ~/.kube/config
 
             # Ensure the Kubernetes context is set
             kubectl config use-context docker-desktop || kubectl config use-context minikube || echo "No valid context found"
@@ -60,12 +63,10 @@ jobs:
       - name: Verify Kubernetes Context
         run: kubectl config current-context
 
-      - name: Run PowerShell Script to Deploy Kubernetes Manifests
-        shell: pwsh
+      - name: Run Shell Script to Apply Kubernetes Manifests
         run: |
-            Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
-            ./Backend/Kubernetes/deployments/run-deployments.ps1
-
+          chmod +x Backend/Kubernetes/deployments/deploy-k8s.sh  # Make sure the script is executable
+          ./Backend/Kubernetes/deployments/deploy-k8s.sh
 
       - name: Check Deployment Status
         run: kubectl get pods
