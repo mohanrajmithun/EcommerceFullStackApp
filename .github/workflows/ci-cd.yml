@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -60,10 +60,12 @@ jobs:
       - name: Verify Kubernetes Context
         run: kubectl config current-context
 
-      - name: Run Shell Script to Apply Kubernetes Manifests
+      - name: Run PowerShell Script to Deploy Kubernetes Manifests
+        shell: pwsh
         run: |
-          chmod +x Backend/Kubernetes/deployments/deploy-k8s.sh  # Make sure the script is executable
-          ./Backend/Kubernetes/deployments/deploy-k8s.sh
+            Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+            ./Backend/Kubernetes/deployments/run-deployments.ps1
+
 
       - name: Check Deployment Status
         run: kubectl get pods
