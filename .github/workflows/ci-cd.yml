@@ -36,17 +36,22 @@ jobs:
       
       - name: Decode and Save Kubeconfig
         run: |
-            mkdir -p ~/.kube  # Ensure the .kube directory exists
-            echo "$KUBECONFIG" | base64 --decode > ~/.kube/config
+            mkdir -p ~/.kube
+            echo "${{ secrets.KUBECONFIG }}" | base64 --decode > ~/.kube/config
+            chmod 600 ~/.kube/config  # Secure kubeconfig file
+            export KUBECONFIG=~/.kube/config  # Ensure kubectl uses this file
 
-            # Ensure a valid context is set
+            # Validate the kubeconfig file
+            echo "Kubeconfig file content:"
+            cat ~/.kube/config
+
+            # Ensure the Kubernetes context is set
             kubectl config use-context docker-desktop || kubectl config use-context minikube || echo "No valid context found"
-    
-            # Show the current context and verify the config
+
+            # Show the current context and verify cluster communication
             kubectl config current-context
-            kubectl config view --minify
-        env:
-            KUBECONFIG: ${{ secrets.KUBECONFIG }}
+            kubectl get nodes
+
 
 
 
